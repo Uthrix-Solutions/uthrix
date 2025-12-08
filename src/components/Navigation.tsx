@@ -77,7 +77,7 @@ export function Navigation() {
 
   return (
     <header
-      className={`fixed top-12 left-1/3 md:left-1/2 transform -translate-x-1/2 md:-translate-x-1/2 w-auto rounded-full px-5 py-2 transition-all duration-500 ease-[cubic-bezier(0.22,1,0.36,1)] z-50 md:top-4 border backdrop-blur-md ${
+      className={`fixed top-12 right-4 md:left-1/2 transform md:-translate-x-1/2 w-auto rounded-full px-5 py-2 transition-all duration-500 ease-[cubic-bezier(0.22,1,0.36,1)] z-50 md:top-4 border backdrop-blur-md ${
         isSticky
           ? 'bg-white/10 dark:bg-black/10 shadow-lg border-white/20 dark:border-gray-700/20'
           : 'bg-white dark:bg-black shadow-md border-transparent'
@@ -156,7 +156,7 @@ export function Navigation() {
             animate={{ opacity: 1, scale: 1, y: 0 }}
             exit={{ opacity: 0, scale: 0.95, y: -10 }}
             transition={{ duration: 0.2 }}
-            className="md:hidden absolute top-full left-0 right-0 mt-2 bg-white dark:bg-black rounded-lg shadow-lg py-4 px-6 w-48 mx-auto border border-gray-200 dark:border-gray-800"
+            className="md:hidden absolute top-full right-0 mt-2 bg-white dark:bg-black rounded-lg shadow-lg py-4 px-6 w-48 border border-gray-200 dark:border-gray-800"
           >
             <ul className="flex flex-col space-y-3 text-center">
               {navLinks.map(({ name, path }) => (
