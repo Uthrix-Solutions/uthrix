@@ -1,6 +1,5 @@
 import { useEffect, useState } from 'react';
 import { Menu, X } from 'lucide-react';
-import { ThemeToggle } from './ThemeToggle';
 import { motion, AnimatePresence } from 'framer-motion';
 
 const navLinks = [
@@ -141,11 +140,6 @@ export function Navigation() {
         >
           Talk to Us
         </a>
-
-        {/* Desktop Theme Toggle */}
-        <div className="hidden md:block">
-          <ThemeToggle />
-        </div>
       </nav>
 
       {/* Mobile Menu Overlay */}
@@ -188,11 +182,6 @@ export function Navigation() {
                 >
                   Contact Us
                 </a>
-              </li>
-
-              {/* Mobile Theme Toggle */}
-              <li className="mt-3 flex justify-center">
-                <ThemeToggle />
               </li>
             </ul>
           </motion.div>
