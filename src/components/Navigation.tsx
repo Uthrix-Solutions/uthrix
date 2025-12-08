@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react';
 import { Menu, X } from 'lucide-react';
 import { motion, AnimatePresence } from 'framer-motion';
+import logo from "../assets/logo7.png";
 
 const navLinks = [
   { name: 'Home', path: 'home' },
@@ -84,19 +85,13 @@ export function Navigation() {
     >
       <nav className="flex items-center gap-6">
         {/* Logo */}
-        <a
-          href="#home"
-          onClick={(e) => {
-            e.preventDefault();
-            scrollToSection('home');
-          }}
-          className="flex items-center group"
+        <a 
+          href="/" 
+          className="text-2xl font-bold"
+          onClick={() => setIsMenuOpen(false)}
         >
-          <div className="w-8 h-8 bg-primary rounded-lg flex items-center justify-center text-white font-bold text-lg transition-transform duration-200 ease-out group-hover:scale-150 group-hover:-rotate-[1.5deg] group-hover:drop-shadow-md motion-reduce:transition-none motion-reduce:group-hover:transform-none">
-            U
-          </div>
+          <img src={logo} alt="logo" className="w-8 h-8 cursor-pointer transition-transform duration-200 ease-out hover:scale-150 hover:-rotate-[1.5deg] hover:drop-shadow-md motion-reduce:transition-none motion-reduce:hover:transform-none" />
         </a>
-
         {/* Mobile menu button */}
         <button
           onClick={toggleMenu}
