@@ -76,7 +76,7 @@ export function Navigation() {
 
   return (
     <header
-      className={`fixed top-12 right-4 md:left-1/2 transform md:-translate-x-1/2 w-auto rounded-full px-5 py-2 transition-all duration-500 ease-[cubic-bezier(0.22,1,0.36,1)] z-50 md:top-4 border backdrop-blur-md ${
+      className={`fixed top-16 right-4 md:left-1/2 transform md:-translate-x-1/2 w-auto rounded-full px-5 py-2 transition-all duration-500 ease-[cubic-bezier(0.22,1,0.36,1)] z-50 md:top-4 border backdrop-blur-md ${
         isSticky
           ? 'bg-white/10 dark:bg-black/10 shadow-lg border-white/20 dark:border-gray-700/20'
           : 'bg-white dark:bg-black shadow-md border-transparent'
