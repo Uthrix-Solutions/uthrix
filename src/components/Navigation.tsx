@@ -76,13 +76,13 @@ export function Navigation() {
 
   return (
     <header
-      className={`fixed top-16 right-4 md:left-1/2 transform md:-translate-x-1/2 w-auto rounded-full px-5 py-2 transition-all duration-500 ease-[cubic-bezier(0.22,1,0.36,1)] z-50 md:top-4 border backdrop-blur-md ${
+      className={`fixed top-16 right-4 md:left-1/2 transform md:-translate-x-1/2 w-fit rounded-full px-5 py-2 transition-all duration-500 ease-[cubic-bezier(0.22,1,0.36,1)] z-50 md:top-4 border backdrop-blur-md ${
         isSticky
           ? 'bg-white/10 dark:bg-black/10 shadow-lg border-white/20 dark:border-gray-700/20'
           : 'bg-white dark:bg-black shadow-md border-transparent'
       }`}
     >
-      <nav className="flex items-center space-x-8">
+      <nav className="flex items-center gap-6">
         {/* Logo */}
         <a
           href="#home"
@@ -90,7 +90,7 @@ export function Navigation() {
             e.preventDefault();
             scrollToSection('home');
           }}
-          className="flex items-center space-x-2 group"
+          className="flex items-center group"
         >
           <div className="w-8 h-8 bg-primary rounded-lg flex items-center justify-center text-white font-bold text-lg transition-transform duration-200 ease-out group-hover:scale-150 group-hover:-rotate-[1.5deg] group-hover:drop-shadow-md motion-reduce:transition-none motion-reduce:group-hover:transform-none">
             U
@@ -98,18 +98,16 @@ export function Navigation() {
         </a>
 
         {/* Mobile menu button */}
-        <div className="md:hidden">
-          <button
-            onClick={toggleMenu}
-            className="text-gray-700 dark:text-gray-300 focus:outline-none p-2 rounded-md hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors"
-            aria-label="Toggle menu"
-          >
-            {isMenuOpen ? <X size={24} /> : <Menu size={24} />}
-          </button>
-        </div>
+        <button
+          onClick={toggleMenu}
+          className="md:hidden text-gray-700 dark:text-gray-300 focus:outline-none p-2 rounded-md hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors"
+          aria-label="Toggle menu"
+        >
+          {isMenuOpen ? <X size={24} /> : <Menu size={24} />}
+        </button>
 
         {/* Desktop Navigation Links */}
-        <ul className="hidden md:flex space-x-6">
+        <ul className="hidden md:flex items-center gap-6">
           {navLinks.map(({ name, path }) => (
             <li key={path} className="cursor-pointer">
               <a
@@ -118,7 +116,7 @@ export function Navigation() {
                   e.preventDefault();
                   scrollToSection(path);
                 }}
-                className={`block py-2 font-medium text-sm hover:text-primary transition-colors relative group ${
+                className={`block py-2 font-medium text-sm hover:text-primary transition-colors relative group whitespace-nowrap ${
                   activeSection === path ? 'text-primary' : ''
                 }`}
               >
@@ -127,19 +125,21 @@ export function Navigation() {
               </a>
             </li>
           ))}
+          
+          {/* Desktop Contact Button */}
+          <li>
+            <a
+              href="#contact"
+              onClick={(e) => {
+                e.preventDefault();
+                scrollToSection('contact');
+              }}
+              className="bg-primary text-white px-4 py-2 rounded-full font-medium hover:bg-primary/80 transition-colors whitespace-nowrap"
+            >
+              Talk to Us
+            </a>
+          </li>
         </ul>
-
-        {/* Desktop Contact Button */}
-        <a
-          href="#contact"
-          onClick={(e) => {
-            e.preventDefault();
-            scrollToSection('contact');
-          }}
-          className="hidden md:block bg-primary text-white px-4 py-2 rounded-full font-medium hover:bg-primary/80 transition-colors"
-        >
-          Talk to Us
-        </a>
       </nav>
 
       {/* Mobile Menu Overlay */}
