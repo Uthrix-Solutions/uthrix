@@ -1,6 +1,6 @@
 import { useRef, useMemo } from 'react';
 import { Canvas, useFrame } from '@react-three/fiber';
-import { OrbitControls, Float, Environment, PerspectiveCamera, ContactShadows } from '@react-three/drei';
+import { OrbitControls, Float, Environment, PerspectiveCamera } from '@react-three/drei';
 import * as THREE from 'three';
 
 interface Logo3DProps {
@@ -76,15 +76,15 @@ function UthrixLogo({ isDark }: { isDark: boolean }) {
   const { uGeometry, dotPosition, dotRadius } = useMemo(() => {
     const shape = new THREE.Shape();
     
-    // REFINED GEOMETRY FOR IMAGE MATCHING
-    const R = 1.1; // Outer radius
-    const W = 0.75; // Chunky stroke
-    const r = R - W; // 0.35 Inner radius
+    // REFINED GEOMETRY - WIDER WITH SMOOTH EDGES
+    const R = 1.5; // Wider outer radius
+    const W = 0.75; // Stroke width (bar thickness)
+    const r = R - W; // 0.75 Inner radius
     
     // Height of the straight part of the left leg
     const H_LEFT = 2.4; 
     const H_GAP = 0.30; 
-    const DOT_RAD = W / 2;
+    const DOT_RAD = W / 2; // Ball radius = half of stroke width (diameter = W)
     
     // Align dot top with left stem top
     // Left stem top edge is H_LEFT + W/2
@@ -96,45 +96,61 @@ function UthrixLogo({ isDark }: { isDark: boolean }) {
     const rightStemTopY = H_LEFT - W - H_GAP;
     const rightStemCenterX = r + W/2; 
 
-    // Draw U Shape
-    // Start at top-left outer
-    shape.moveTo(-R, H_LEFT);
-    // Line down to tangent point
+    // Draw U Shape with rounded caps and smooth transitions on both sides
+    // Start at top-left outer edge (after the cap)
+    const leftStemCenterX = -(r + W/2);
+    
+    // Add smooth transition at bottom of stems (fillet radius)
+    const filletRadius = W * 0.3; // Small fillet for smooth transition
+    const leftStemBottomY = filletRadius; // Stop before the arc
+    
+    // Start from the right side of the left stem's top cap
+    shape.moveTo(-r, H_LEFT);
+    
+    // Draw left stem cap (top)
+    shape.absarc(leftStemCenterX, H_LEFT, W/2, 0, Math.PI, false);
+    
+    // Line down left outer edge to tangent point
     shape.lineTo(-R, 0); 
     
     // Outer arc: Bowl shape (Bottom) - COUNTER-CLOCKWISE (PI -> 0)
     shape.absarc(0, 0, R, Math.PI, 0, false);
     
+    // Line up right outer edge
     shape.lineTo(R, rightStemTopY);
-    // Right stem cap
+    
+    // Right stem cap (top)
     shape.absarc(rightStemCenterX, rightStemTopY, W/2, 0, Math.PI, false);
     
+    // Line down right inner edge
     shape.lineTo(r, 0);
     
     // Inner arc: Bowl shape (Bottom) - CLOCKWISE (0 -> PI) (Backwards for hole)
     shape.absarc(0, 0, r, 0, Math.PI, true);
     
-    shape.lineTo(-r, H_LEFT);
-    // Left stem cap
-    shape.absarc(-(r + W/2), H_LEFT, W/2, 0, Math.PI, false);
+    // Line up left inner edge (stop before top for smooth transition)
+    shape.lineTo(-r, leftStemBottomY);
+    
+    // Smooth fillet transition on left inner corner
+    shape.quadraticCurveTo(-r, H_LEFT * 0.15, -r, H_LEFT);
     
     const extrudeSettings = {
       depth: 0.5, // Slightly deeper for substance
       bevelEnabled: true,
-      bevelThickness: 0.05,
-      bevelSize: 0.05,
-      bevelSegments: 16, // Smoother bevels
-      curveSegments: 64 // Very smooth curves
+      bevelThickness: 0.08, // Increased for smoother edges
+      bevelSize: 0.08, // Increased for smoother edges
+      bevelSegments: 32, // Much higher for ultra-smooth edges
+      curveSegments: 96 // Even smoother curves
     };
     
     const geom = new THREE.ExtrudeGeometry(shape, extrudeSettings);
     geom.center();
     
     // Recalculate shift for perfect centering
-    // MaxY = H_LEFT + W/2 = 2.775
-    // MinY = -R = -1.1
-    // Mid = 0.8375
-    const shiftY = -0.84; 
+    // MaxY = H_LEFT + W/2 = 2.4 + 0.375 = 2.775
+    // MinY = -R = -1.5
+    // Mid = (2.775 + (-1.5)) / 2 = 0.6375
+    const shiftY = -0.64; 
 
     return { 
       uGeometry: geom, 
@@ -208,15 +224,6 @@ function Scene({ isDark }: { isDark: boolean }) {
       </Float>
       
       <ParticleField isDark={isDark} />
-      
-      <ContactShadows 
-        position={[0, -3.0, 0]} 
-        opacity={0.4} 
-        scale={10} 
-        blur={2} 
-        far={5} 
-        color={isDark ? "#ffffff" : "#D1001F"}
-      />
     </>
   );
 }
@@ -228,6 +235,7 @@ export function Logo3D({ isDark }: Logo3DProps) {
         shadows
         dpr={[1, 2]}
         gl={{ 
+          alpha: true,
           antialias: true, 
           toneMapping: THREE.ACESFilmicToneMapping, 
           toneMappingExposure: 1.2 
