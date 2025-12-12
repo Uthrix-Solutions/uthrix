@@ -153,7 +153,7 @@ export function Services() {
   const currentCategory = serviceCategories.find(cat => cat.id === activeCategory);
 
   return (
-    <section id="services" className="py-20 lg:py-32 bg-gray-50 dark:bg-gray-900/50 relative overflow-hidden">
+    <section id="services" className="py-20 lg:py-8 bg-gray-50 dark:bg-gray-900/50 relative overflow-hidden">
       {/* Decorative Background Elements */}
       <div className="absolute top-0 right-0 w-1/3 h-full bg-gradient-to-l from-gray-100/50 to-transparent dark:from-gray-800/20 pointer-events-none" />
       <div className="absolute bottom-0 left-0 w-1/4 h-1/2 bg-gradient-to-tr from-primary/5 to-transparent pointer-events-none" />

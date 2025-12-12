@@ -230,7 +230,7 @@ export function Portfolio() {
   }) || [];
 
   return (
-    <section id="portfolio" className="py-20 lg:py-32 relative overflow-hidden">
+    <section id="portfolio" className="py-20 lg:py-10 relative overflow-hidden">
       {/* Decorative Background Elements */}
       <div className="absolute top-0 left-0 w-1/3 h-full bg-gradient-to-r from-gray-100/50 to-transparent dark:from-gray-800/20 pointer-events-none" />
       <div className="absolute bottom-0 right-0 w-1/4 h-1/2 bg-gradient-to-tl from-primary/5 to-transparent pointer-events-none" />
