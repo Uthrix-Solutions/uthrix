@@ -1,8 +1,7 @@
-import { motion, useScroll, useTransform, MotionValue } from "framer-motion";
+import { motion, useScroll, useTransform } from "framer-motion";
 import { ArrowRight, ChevronDown } from "lucide-react";
-import { useEffect, useState, useCallback } from "react";
-import logoWhite from "../assets/images/UlogoWhite.png";
-import logoRed from "../assets/images/UlogoRed.png";
+import { useState, useEffect, useCallback } from "react";
+import { Logo3D } from "./Logo3D";
 
 // Constants
 const SCROLL_RANGE = 500;
@@ -49,16 +48,8 @@ function useThemeDetection(): boolean {
   );
 
   useEffect(() => {
-    const checkTheme = () => {
+    const observer = new MutationObserver(() => {
       setIsDark(document.documentElement.classList.contains("dark"));
-    };
-
-    const observer = new MutationObserver((mutations) => {
-      mutations.forEach((mutation) => {
-        if (mutation.attributeName === "class") {
-          checkTheme();
-        }
-      });
     });
 
     observer.observe(document.documentElement, {
@@ -72,56 +63,8 @@ function useThemeDetection(): boolean {
   return isDark;
 }
 
-// Separate component for 3D illustration
-interface LogoIllustrationProps {
-  rotate: MotionValue<number>;
-  isDark: boolean;
-}
 
-function LogoIllustration({ rotate, isDark }: LogoIllustrationProps) {
-  return (
-    <div className="relative h-[400px] md:h-[600px] flex items-center justify-center perspective-1000">
-      <motion.div
-        style={{ rotateY: rotate }}
-        className="relative w-64 h-64 md:w-80 md:h-80 preserve-3d animate-float"
-      >
-        {/* Central Cube */}
-        <div
-          className="absolute inset-0 bg-gradient-to-br from-primary to-primary-dark rounded-3xl opacity-90 shadow-2xl transform rotate-45"
-          aria-hidden="true"
-        />
 
-        {/* Floating Elements */}
-        <div
-          className="absolute -top-12 -right-12 w-24 h-24 bg-gray-100 dark:bg-gray-800 rounded-2xl shadow-xl animate-float-delayed flex items-center justify-center border border-gray-200 dark:border-gray-700"
-          aria-hidden="true"
-        >
-          <div className="w-12 h-12 bg-primary/20 rounded-full" />
-        </div>
-
-        <div
-          className="absolute -bottom-8 -left-8 w-32 h-32 bg-white dark:bg-gray-900 rounded-full shadow-xl animate-pulse-slow flex items-center justify-center border border-gray-200 dark:border-gray-700 z-20"
-          aria-hidden="true"
-        >
-          <img
-            src={isDark ? logoWhite : logoRed}
-            alt="UthriX Logo"
-            className="w-16 h-16 object-contain transition-opacity duration-300"
-            loading="lazy"
-            width={64}
-            height={64}
-          />
-        </div>
-
-        {/* Orbiting Ring */}
-        <div
-          className="absolute inset-[-40px] border-2 border-dashed border-primary/30 rounded-full animate-spin-slow"
-          aria-hidden="true"
-        />
-      </motion.div>
-    </div>
-  );
-}
 
 export function Hero() {
   const { scrollY } = useScroll();
@@ -135,11 +78,7 @@ export function Hero() {
     ANIMATION_CONFIG.y2.input,
     ANIMATION_CONFIG.y2.output
   );
-  const rotate = useTransform(
-    scrollY,
-    ANIMATION_CONFIG.rotate.input,
-    ANIMATION_CONFIG.rotate.output
-  );
+
 
   const isDark = useThemeDetection();
 
@@ -323,8 +262,8 @@ export function Hero() {
             </nav>
           </motion.div>
 
-          {/* 3D Illustration Area */}
-          <LogoIllustration rotate={rotate} isDark={isDark} />
+          {/* 3D Logo Area */}
+          <Logo3D isDark={isDark} />
         </div>
       </div>
 
