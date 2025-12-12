@@ -12,7 +12,6 @@ import img7 from "../assets/techstack/7.png";
 import img8 from "../assets/techstack/8.png";
 import img9 from "../assets/techstack/9.png";
 import img10 from "../assets/techstack/10.png";
-import img11 from "../assets/techstack/11.png";
 import img12 from "../assets/techstack/12.png";
 import img13 from "../assets/techstack/13.png";
 import img14 from "../assets/techstack/14.png";
