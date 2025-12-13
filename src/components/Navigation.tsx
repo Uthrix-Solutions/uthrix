@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react';
 import { Menu, X } from 'lucide-react';
 import { motion, AnimatePresence } from 'framer-motion';
+import { useNavigate, useLocation } from 'react-router-dom';
 import logo from "../assets/logo7.png";
 
 const navLinks = [
@@ -9,12 +10,15 @@ const navLinks = [
   { name: 'Technologies & Tools', path: 'technologies' },
   { name: 'Portfolio', path: 'portfolio' },
   { name: 'About', path: 'about' },
+  { name: 'Careers', path: '/careers', isRoute: true },
 ];
 
 export function Navigation() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [isSticky, setIsSticky] = useState(false);
   const [activeSection, setActiveSection] = useState('');
+  const navigate = useNavigate();
+  const location = useLocation();
 
   const toggleMenu = () => setIsMenuOpen(!isMenuOpen);
 
@@ -37,19 +41,43 @@ export function Navigation() {
   }, []);
 
   // Scroll to section handler
-  const scrollToSection = (path: string) => {
+  const scrollToSection = (path: string, isRoute?: boolean) => {
     setActiveSection(path);
     setIsMenuOpen(false);
     
-    const element = document.getElementById(path);
-    if (element) {
-      const navbarHeight = 100;
-      const elementPosition = element.getBoundingClientRect().top + window.pageYOffset - navbarHeight;
-      
-      window.scrollTo({
-        top: elementPosition,
-        behavior: 'smooth',
-      });
+    // Handle route navigation
+    if (isRoute) {
+      navigate(path);
+      return;
+    }
+    
+    // Handle scroll to section on homepage
+    if (location.pathname !== '/') {
+      navigate('/');
+      // Wait for navigation then scroll
+      setTimeout(() => {
+        const element = document.getElementById(path);
+        if (element) {
+          const navbarHeight = 100;
+          const elementPosition = element.getBoundingClientRect().top + window.pageYOffset - navbarHeight;
+          
+          window.scrollTo({
+            top: elementPosition,
+            behavior: 'smooth',
+          });
+        }
+      }, 100);
+    } else {
+      const element = document.getElementById(path);
+      if (element) {
+        const navbarHeight = 100;
+        const elementPosition = element.getBoundingClientRect().top + window.pageYOffset - navbarHeight;
+        
+        window.scrollTo({
+          top: elementPosition,
+          behavior: 'smooth',
+        });
+      }
     }
   };
 
@@ -103,16 +131,16 @@ export function Navigation() {
 
         {/* Desktop Navigation Links */}
         <ul className="hidden md:flex items-center gap-6">
-          {navLinks.map(({ name, path }) => (
+          {navLinks.map(({ name, path, isRoute }) => (
             <li key={path} className="cursor-pointer">
               <a
-                href={`#${path}`}
+                href={isRoute ? path : `#${path}`}
                 onClick={(e) => {
                   e.preventDefault();
-                  scrollToSection(path);
+                  scrollToSection(path, isRoute);
                 }}
                 className={`block py-2 font-medium text-sm hover:text-primary transition-colors relative group whitespace-nowrap ${
-                  activeSection === path ? 'text-primary' : ''
+                  (isRoute && location.pathname === path) || activeSection === path ? 'text-primary' : ''
                 }`}
               >
                 {name}
@@ -148,16 +176,16 @@ export function Navigation() {
             className="md:hidden absolute top-full right-0 mt-2 bg-white dark:bg-black rounded-lg shadow-lg py-4 px-6 w-48 border border-gray-200 dark:border-gray-800"
           >
             <ul className="flex flex-col space-y-3 text-center">
-              {navLinks.map(({ name, path }) => (
+              {navLinks.map(({ name, path, isRoute }) => (
                 <li key={path} className="cursor-pointer">
                   <a
-                    href={`#${path}`}
+                    href={isRoute ? path : `#${path}`}
                     onClick={(e) => {
                       e.preventDefault();
-                      scrollToSection(path);
+                      scrollToSection(path, isRoute);
                     }}
                     className={`block py-2 font-medium hover:text-primary transition-colors ${
-                      activeSection === path ? 'text-primary' : ''
+                      (isRoute && location.pathname === path) || activeSection === path ? 'text-primary' : ''
                     }`}
                   >
                     {name}

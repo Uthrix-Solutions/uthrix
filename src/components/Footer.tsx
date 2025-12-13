@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 import { Github, Linkedin, Twitter } from 'lucide-react';
 export function Footer() {
   return <footer className="bg-gray-900 text-white pt-20 pb-10">
@@ -44,9 +45,9 @@ export function Footer() {
                 </a>
               </li>
               <li>
-                <a href="#" className="text-gray-400 hover:text-primary transition-colors">
+                <Link to="/careers" className="text-gray-400 hover:text-primary transition-colors">
                   Careers
-                </a>
+                </Link>
               </li>
               <li>
                 <a href="#contact" className="text-gray-400 hover:text-primary transition-colors">
