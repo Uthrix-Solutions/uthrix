@@ -18,6 +18,7 @@ import {
 import { Navigation } from '../components/Navigation';
 import { Footer } from '../components/Footer';
 import { FloatingThemeToggle } from '../components/FloatingThemeToggle';
+import { ScrollToTopButton } from '../components/ScrollToTopButton';
 
 interface Job {
   id: string;
@@ -197,6 +198,7 @@ export function Careers() {
     <div className="min-h-screen bg-[var(--bg-primary)] text-[var(--text-primary)] transition-colors duration-300">
       <Navigation />
       <FloatingThemeToggle />
+      <ScrollToTopButton />
       
       {/* Hero Section */}
       <section className="pt-32 pb-20 px-4 sm:px-6 lg:px-8">
