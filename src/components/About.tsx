@@ -1,4 +1,3 @@
-import React from 'react';
 import { motion } from 'framer-motion';
 import { Award, Clock, Code, Users } from 'lucide-react';
 const stats = [{
