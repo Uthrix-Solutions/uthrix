@@ -1,13 +1,12 @@
-import React from 'react';
 import { motion } from 'framer-motion';
 import { Award, Clock, Code, Users } from 'lucide-react';
 const stats = [{
   label: 'Projects Completed',
-  value: '500+',
+  value: '10+',
   icon: Award
 }, {
   label: 'Years Experience',
-  value: '15+',
+  value: '2+',
   icon: Clock
 }, {
   label: 'Coding Hours',
@@ -15,7 +14,7 @@ const stats = [{
   icon: Code
 }, {
   label: 'Happy Clients',
-  value: '200+',
+  value: '15+',
   icon: Users
 }];
 export function About() {
