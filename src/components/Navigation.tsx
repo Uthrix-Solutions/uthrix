@@ -10,7 +10,7 @@ const navLinks = [
   { name: 'Technologies & Tools', path: 'technologies' },
   { name: 'Portfolio', path: 'portfolio' },
   { name: 'About', path: 'about' },
-  { name: 'Careers', path: '/careers', isRoute: true },
+  { name: 'Careers', path: '/', isRoute: true },
 ];
 
 export function Navigation() {
