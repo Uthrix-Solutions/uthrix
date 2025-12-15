@@ -43,7 +43,7 @@ export function Contact() {
                 <div>
                   <h3 className="font-bold text-lg">Email Us</h3>
                   <p className="text-gray-600 dark:text-gray-400">
-                    hello@uthrix.com
+                    uthrix.solutions@gmail.com
                   </p>
                 </div>
               </div>
@@ -55,7 +55,7 @@ export function Contact() {
                 <div>
                   <h3 className="font-bold text-lg">Call Us</h3>
                   <p className="text-gray-600 dark:text-gray-400">
-                    +1 (555) 123-4567
+                    +94 773 263 997
                   </p>
                 </div>
               </div>
@@ -64,19 +64,19 @@ export function Contact() {
                 <div className="p-3 bg-gray-100 dark:bg-gray-800 rounded-lg text-primary">
                   <MapPin className="w-6 h-6" />
                 </div>
-                <div>
+                {/* <div>
                   <h3 className="font-bold text-lg">Visit Us</h3>
                   <p className="text-gray-600 dark:text-gray-400">
                     123 Tech Avenue, Silicon Valley
                     <br />
                     California, USA
                   </p>
-                </div>
+                </div> */}
               </div>
             </div>
 
             {/* Animated Map Placeholder */}
-            <div className="mt-12 h-48 bg-gray-100 dark:bg-gray-800 rounded-2xl overflow-hidden relative">
+            {/* <div className="mt-12 h-48 bg-gray-100 dark:bg-gray-800 rounded-2xl overflow-hidden relative">
               <div className="absolute inset-0 opacity-20">
                 <div className="w-full h-full bg-[radial-gradient(#D1001F_1px,transparent_1px)] [background-size:16px_16px]" />
               </div>
@@ -86,7 +86,7 @@ export function Contact() {
                   <div className="w-4 h-4 bg-primary rounded-full relative z-10" />
                 </div>
               </div>
-            </div>
+            </div> */}
           </motion.div>
 
           <motion.div initial={{
