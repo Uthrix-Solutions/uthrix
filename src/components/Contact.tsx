@@ -37,7 +37,7 @@ export function Contact() {
 
             <div className="space-y-8">
               <div className="flex items-start space-x-4">
-                <div className="p-3 bg-gray-100 dark:bg-gray-800 rounded-lg text-primary">
+                <div className="p-3 bg-gray-100 dark:bg-white/5 rounded-lg text-primary">
                   <Mail className="w-6 h-6" />
                 </div>
                 <div>
@@ -49,7 +49,7 @@ export function Contact() {
               </div>
 
               <div className="flex items-start space-x-4">
-                <div className="p-3 bg-gray-100 dark:bg-gray-800 rounded-lg text-primary">
+                <div className="p-3 bg-gray-100 dark:bg-white/5 rounded-lg text-primary">
                   <Phone className="w-6 h-6" />
                 </div>
                 <div>
@@ -61,7 +61,7 @@ export function Contact() {
               </div>
 
               <div className="flex items-start space-x-4">
-                <div className="p-3 bg-gray-100 dark:bg-gray-800 rounded-lg text-primary">
+                <div className="p-3 bg-gray-100 dark:bg-white/5 rounded-lg text-primary">
                   <MapPin className="w-6 h-6" />
                 </div>
                 {/* <div>
@@ -97,20 +97,20 @@ export function Contact() {
           x: 0
         }} viewport={{
           once: true
-        }} className="bg-white dark:bg-gray-900 p-8 rounded-3xl shadow-xl border border-gray-100 dark:border-gray-800">
+        }} className="bg-white dark:bg-[#141414] p-8 rounded-3xl shadow-xl border border-gray-100 dark:border-white/10">
             <form onSubmit={handleSubmit} className="space-y-6">
               <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                 <div className="space-y-2">
                   <label htmlFor="name" className="text-sm font-medium">
                     Name
                   </label>
-                  <input type="text" id="name" required className="w-full px-4 py-3 rounded-xl bg-gray-50 dark:bg-gray-800 border border-gray-200 dark:border-gray-700 focus:ring-2 focus:ring-primary focus:border-transparent outline-none transition-all" placeholder="John Doe" />
+                  <input type="text" id="name" required className="w-full px-4 py-3 rounded-xl bg-gray-50 dark:bg-white/5 border border-gray-200 dark:border-white/10 focus:ring-2 focus:ring-primary focus:border-transparent outline-none transition-all" placeholder="John Doe" />
                 </div>
                 <div className="space-y-2">
                   <label htmlFor="email" className="text-sm font-medium">
                     Email
                   </label>
-                  <input type="email" id="email" required className="w-full px-4 py-3 rounded-xl bg-gray-50 dark:bg-gray-800 border border-gray-200 dark:border-gray-700 focus:ring-2 focus:ring-primary focus:border-transparent outline-none transition-all" placeholder="john@example.com" />
+                  <input type="email" id="email" required className="w-full px-4 py-3 rounded-xl bg-gray-50 dark:bg-white/5 border border-gray-200 dark:border-white/10 focus:ring-2 focus:ring-primary focus:border-transparent outline-none transition-all" placeholder="john@example.com" />
                 </div>
               </div>
 
@@ -118,14 +118,14 @@ export function Contact() {
                 <label htmlFor="subject" className="text-sm font-medium">
                   Subject
                 </label>
-                <input type="text" id="subject" required className="w-full px-4 py-3 rounded-xl bg-gray-50 dark:bg-gray-800 border border-gray-200 dark:border-gray-700 focus:ring-2 focus:ring-primary focus:border-transparent outline-none transition-all" placeholder="Project Inquiry" />
+                <input type="text" id="subject" required className="w-full px-4 py-3 rounded-xl bg-gray-50 dark:bg-white/5 border border-gray-200 dark:border-white/10 focus:ring-2 focus:ring-primary focus:border-transparent outline-none transition-all" placeholder="Project Inquiry" />
               </div>
 
               <div className="space-y-2">
                 <label htmlFor="message" className="text-sm font-medium">
                   Message
                 </label>
-                <textarea id="message" required rows={4} className="w-full px-4 py-3 rounded-xl bg-gray-50 dark:bg-gray-800 border border-gray-200 dark:border-gray-700 focus:ring-2 focus:ring-primary focus:border-transparent outline-none transition-all resize-none" placeholder="Tell us about your project..." />
+                <textarea id="message" required rows={4} className="w-full px-4 py-3 rounded-xl bg-gray-50 dark:bg-white/5 border border-gray-200 dark:border-white/10 focus:ring-2 focus:ring-primary focus:border-transparent outline-none transition-all resize-none" placeholder="Tell us about your project..." />
               </div>
 
               <button type="submit" disabled={formState !== 'idle'} className={`w-full py-4 rounded-xl font-bold text-white transition-all flex items-center justify-center space-x-2 ${formState === 'success' ? 'bg-green-500' : 'bg-primary hover:bg-primary-dark'}`}>

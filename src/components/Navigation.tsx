@@ -122,7 +122,7 @@ export function Navigation() {
         {/* Mobile menu button */}
         <button
           onClick={toggleMenu}
-          className="md:hidden text-gray-700 dark:text-gray-300 focus:outline-none p-2 rounded-md hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors"
+          className="md:hidden text-gray-700 dark:text-gray-300 focus:outline-none p-2 rounded-md hover:bg-gray-100 dark:hover:bg-white/5 transition-colors"
           aria-label="Toggle menu"
         >
           {isMenuOpen ? <X size={24} /> : <Menu size={24} />}
@@ -172,7 +172,7 @@ export function Navigation() {
             animate={{ opacity: 1, scale: 1, y: 0 }}
             exit={{ opacity: 0, scale: 0.95, y: -10 }}
             transition={{ duration: 0.2 }}
-            className="md:hidden absolute top-full right-0 mt-2 bg-white dark:bg-black rounded-lg shadow-lg py-4 px-6 w-48 border border-gray-200 dark:border-gray-800"
+            className="md:hidden absolute top-full right-0 mt-2 bg-white dark:bg-[#141414] rounded-lg shadow-lg py-4 px-6 w-48 border border-gray-200 dark:border-white/10"
           >
             <ul className="flex flex-col space-y-3 text-center">
               {navLinks.map(({ name, path, isRoute }) => (

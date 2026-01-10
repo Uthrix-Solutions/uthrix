@@ -1,7 +1,7 @@
 import { Link } from 'react-router-dom';
 import { Github, Linkedin, Twitter } from 'lucide-react';
 export function Footer() {
-  return <footer className="bg-gray-900 text-white pt-20 pb-10">
+  return <footer className="bg-[#141414] dark:bg-[#0a0a0a] text-white pt-20 pb-10">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12 mb-16">
           <div className="space-y-6">
@@ -18,13 +18,13 @@ export function Footer() {
               seamless growth.
             </p>
             <div className="flex space-x-4">
-              <a href="#" className="p-2 bg-gray-800 rounded-full hover:bg-primary transition-colors">
+              <a href="#" className="p-2 bg-white/5 rounded-full hover:bg-primary transition-colors">
                 <Linkedin className="w-5 h-5" />
               </a>
-              <a href="#" className="p-2 bg-gray-800 rounded-full hover:bg-primary transition-colors">
+              <a href="#" className="p-2 bg-white/5 rounded-full hover:bg-primary transition-colors">
                 <Twitter className="w-5 h-5" />
               </a>
-              <a href="#" className="p-2 bg-gray-800 rounded-full hover:bg-primary transition-colors">
+              <a href="#" className="p-2 bg-white/5 rounded-full hover:bg-primary transition-colors">
                 <Github className="w-5 h-5" />
               </a>
             </div>
@@ -88,7 +88,7 @@ export function Footer() {
               Subscribe to our newsletter for the latest updates.
             </p>
             <form className="flex">
-              <input type="email" placeholder="Enter your email" className="flex-1 px-4 py-2 rounded-l-lg bg-gray-800 border-none focus:ring-2 focus:ring-primary outline-none" />
+              <input type="email" placeholder="Enter your email" className="flex-1 px-4 py-2 rounded-l-lg bg-white/5 border border-white/10 focus:ring-2 focus:ring-primary outline-none" />
               <button className="px-4 py-2 bg-primary rounded-r-lg font-bold hover:bg-primary-dark transition-colors">
                 Go
               </button>

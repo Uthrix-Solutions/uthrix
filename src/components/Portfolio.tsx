@@ -274,7 +274,7 @@ export function Portfolio() {
           transition={{ delay: 0.2 }}
           className="flex justify-center mb-8"
         >
-          <div className="inline-flex bg-white/60 dark:bg-gray-800/60 backdrop-blur-lg rounded-2xl p-2 shadow-lg border border-gray-200/50 dark:border-gray-700/50">
+          <div className="inline-flex bg-white/60 dark:bg-white/5 backdrop-blur-lg rounded-2xl p-2 shadow-lg border border-gray-200/50 dark:border-white/10">
             {portfolioData.map((category) => (
               <button
                 key={category.id}
@@ -312,7 +312,7 @@ export function Portfolio() {
             animate={{ opacity: 1, y: 0 }}
             className="flex justify-center mb-12"
           >
-            <div className="inline-flex gap-2 bg-gray-100/80 dark:bg-gray-800/80 backdrop-blur-sm rounded-xl p-1.5">
+            <div className="inline-flex gap-2 bg-gray-100/80 dark:bg-white/5 backdrop-blur-sm rounded-xl p-1.5">
               {currentCategory.subcategories.map((sub) => (
                 <button
                   key={sub.id}
@@ -347,7 +347,7 @@ export function Portfolio() {
               <motion.div
                 key={project.title}
                 variants={item}
-                className="group bg-white dark:bg-gray-800 rounded-2xl shadow-lg hover:shadow-2xl transition-all duration-500 overflow-hidden border border-gray-200 dark:border-gray-700"
+                className="group bg-white dark:bg-[#141414] rounded-2xl shadow-lg hover:shadow-2xl transition-all duration-500 overflow-hidden border border-gray-200 dark:border-white/10"
               >
                 {/* Project Image */}
                 <div className="relative h-64 overflow-hidden">
@@ -396,7 +396,7 @@ export function Portfolio() {
                       {project.technologies.map((tech) => (
                         <span
                           key={tech}
-                          className="px-3 py-1 bg-gray-100 dark:bg-gray-700 text-gray-700 dark:text-gray-300 rounded-full text-xs font-medium"
+                          className="px-3 py-1 bg-gray-100 dark:bg-white/10 text-gray-700 dark:text-gray-300 rounded-full text-xs font-medium"
                         >
                           {tech}
                         </span>

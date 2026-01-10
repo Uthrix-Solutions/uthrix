@@ -153,7 +153,7 @@ export function Services() {
   const currentCategory = serviceCategories.find(cat => cat.id === activeCategory);
 
   return (
-    <section id="services" className="py-20 lg:py-8 bg-gray-50 dark:bg-gray-900/50 relative overflow-hidden">
+    <section id="services" className="py-20 lg:py-8 bg-gray-50 dark:bg-[#0a0a0a] relative overflow-hidden">
       {/* Decorative Background Elements */}
       <div className="absolute top-0 right-0 w-1/3 h-full bg-gradient-to-l from-gray-100/50 to-transparent dark:from-gray-800/20 pointer-events-none" />
       <div className="absolute bottom-0 left-0 w-1/4 h-1/2 bg-gradient-to-tr from-primary/5 to-transparent pointer-events-none" />
@@ -192,7 +192,7 @@ export function Services() {
           transition={{ delay: 0.2 }}
           className="flex justify-center mb-12"
         >
-          <div className="inline-flex bg-white/60 dark:bg-gray-800/60 backdrop-blur-lg rounded-2xl p-2 shadow-lg border border-gray-200/50 dark:border-gray-700/50">
+          <div className="inline-flex bg-white/60 dark:bg-white/5 backdrop-blur-lg rounded-2xl p-2 shadow-lg border border-gray-200/50 dark:border-white/10">
             {serviceCategories.map((category) => (
               <button
                 key={category.id}
@@ -232,7 +232,7 @@ export function Services() {
               <motion.div
                 key={service.title}
                 variants={item}
-                className="group relative bg-white/70 dark:bg-gray-800/70 backdrop-blur-md p-8 rounded-2xl shadow-lg hover:shadow-2xl transition-all duration-500 hover:-translate-y-2 border border-gray-200/50 dark:border-gray-700/50 overflow-hidden"
+                className="group relative bg-white/70 dark:bg-white/5 backdrop-blur-md p-8 rounded-2xl shadow-lg hover:shadow-2xl transition-all duration-500 hover:-translate-y-2 border border-gray-200/50 dark:border-white/10 overflow-hidden"
               >
                 {/* Decorative gradient blob */}
                 <div className="absolute top-0 right-0 w-32 h-32 bg-gradient-to-br from-primary/10 to-transparent rounded-bl-full -mr-8 -mt-8 transition-transform group-hover:scale-150 duration-700 ease-out" />

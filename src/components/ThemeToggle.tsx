@@ -6,7 +6,7 @@ export function ThemeToggle() {
     theme,
     toggleTheme
   } = useTheme();
-  return <button onClick={toggleTheme} className="relative p-2 rounded-full bg-gray-100 dark:bg-gray-800 text-primary hover:bg-gray-200 dark:hover:bg-gray-700 transition-colors focus:outline-none focus:ring-2 focus:ring-primary" aria-label="Toggle theme">
+  return <button onClick={toggleTheme} className="relative p-2 rounded-full bg-gray-100 dark:bg-white/5 text-primary hover:bg-gray-200 dark:hover:bg-white/10 transition-colors focus:outline-none focus:ring-2 focus:ring-primary" aria-label="Toggle theme">
       <div className="relative w-6 h-6">
         <motion.div initial={false} animate={{
         scale: theme === 'light' ? 1 : 0,

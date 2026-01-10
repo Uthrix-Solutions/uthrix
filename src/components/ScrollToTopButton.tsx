@@ -102,10 +102,10 @@ export function ScrollToTopButton() {
           <motion.div
             initial={{ opacity: 0, x: 10 }}
             whileHover={{ opacity: 1, x: 0 }}
-            className="absolute right-full mr-3 top-1/2 -translate-y-1/2 px-3 py-1.5 bg-gray-900 dark:bg-white text-white dark:text-gray-900 text-sm font-medium rounded-lg whitespace-nowrap pointer-events-none opacity-0 group-hover:opacity-100 transition-opacity duration-200"
+            className="absolute right-full mr-3 top-1/2 -translate-y-1/2 px-3 py-1.5 bg-[#141414] dark:bg-white text-white dark:text-[#0a0a0a] text-sm font-medium rounded-lg whitespace-nowrap pointer-events-none opacity-0 group-hover:opacity-100 transition-opacity duration-200"
           >
             Back to top
-            <div className="absolute right-0 top-1/2 -translate-y-1/2 translate-x-1/2 rotate-45 w-2 h-2 bg-gray-900 dark:bg-white"></div>
+            <div className="absolute right-0 top-1/2 -translate-y-1/2 translate-x-1/2 rotate-45 w-2 h-2 bg-[#141414] dark:bg-white"></div>
           </motion.div>
         </motion.button>
       )}
