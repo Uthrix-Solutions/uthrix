@@ -1,7 +1,7 @@
 import { Navigation } from '../components/Navigation';
 import { Hero } from '../components/Hero';
 import { Services } from '../components/Services';
-import { Technologies } from '../components/Technologies';
+import { Clients } from '../components/Clients';
 import { Portfolio } from '../components/Portfolio';
 import { Testimonials } from '../components/Testimonials';
 import { About } from '../components/About';
@@ -18,8 +18,8 @@ export function Home() {
       <main>
         <Hero />
         <Services />
-        <Technologies />
         <Portfolio />
+        <Clients />
         <Testimonials />
         <About />
         <Contact />
