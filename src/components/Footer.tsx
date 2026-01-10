@@ -14,8 +14,7 @@ export function Footer() {
               </span>
             </div>
             <p className="text-gray-400 leading-relaxed">
-              Empowering businesses with tailored technology solutions for
-              seamless growth.
+              Digital marketing strategies powered by cutting-edge software engineering. Your growth is our mission.
             </p>
             <div className="flex space-x-4">
               <a href="#" className="p-2 bg-white/5 rounded-full hover:bg-primary transition-colors">
@@ -60,23 +59,23 @@ export function Footer() {
             <h3 className="font-bold text-lg mb-6">Services</h3>
             <ul className="space-y-4">
               <li>
-                <a href="#" className="text-gray-400 hover:text-primary transition-colors">
-                  Web Development
+                <a href="#services" className="text-gray-400 hover:text-primary transition-colors">
+                  Digital Marketing
                 </a>
               </li>
               <li>
-                <a href="#" className="text-gray-400 hover:text-primary transition-colors">
-                  Mobile Apps
+                <a href="#services" className="text-gray-400 hover:text-primary transition-colors">
+                  Software Development
                 </a>
               </li>
               <li>
-                <a href="#" className="text-gray-400 hover:text-primary transition-colors">
-                  Cloud Solutions
+                <a href="#services" className="text-gray-400 hover:text-primary transition-colors">
+                  Web & Mobile Apps
                 </a>
               </li>
               <li>
-                <a href="#" className="text-gray-400 hover:text-primary transition-colors">
-                  Consulting
+                <a href="#services" className="text-gray-400 hover:text-primary transition-colors">
+                  SEO & SEM
                 </a>
               </li>
             </ul>

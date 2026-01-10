@@ -12,8 +12,14 @@ export function Contact() {
       setTimeout(() => setFormState('idle'), 3000);
     }, 1500);
   };
-  return <section id="contact" className="py-20 lg:py-32 relative overflow-hidden">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+  return <section id="contact" className="py-20 lg:py-32 bg-gray-50 dark:bg-[#0a0a0a] relative overflow-hidden">
+      {/* Background Elements */}
+      <div className="absolute inset-0 overflow-hidden pointer-events-none">
+        <div className="absolute top-0 right-0 w-96 h-96 bg-primary/5 rounded-full blur-[120px]" />
+        <div className="absolute bottom-0 left-0 w-96 h-96 bg-blue-500/5 rounded-full blur-[120px]" />
+      </div>
+
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-16">
           <motion.div initial={{
           opacity: 0,
@@ -24,55 +30,66 @@ export function Contact() {
         }} viewport={{
           once: true
         }}>
-            <span className="text-primary font-semibold tracking-wider uppercase text-sm">
-              Get In Touch
+            <span className="inline-block px-4 py-2 rounded-full bg-primary/10 text-primary font-semibold tracking-wider uppercase text-sm mb-6">
+              Let's Talk
             </span>
-            <h2 className="mt-2 text-3xl md:text-4xl font-bold mb-6">
-              Let's Build Together
+            <h2 className="text-4xl md:text-5xl font-bold mb-6 leading-tight">
+              Ready to{" "}
+              <span className="text-primary">Accelerate</span>{" "}
+              Your Growth?
             </h2>
-            <p className="text-gray-600 dark:text-gray-400 text-lg mb-10">
-              Have a project in mind? We'd love to hear about it. Send us a
-              message and we'll get back to you within 24 hours.
+            <p className="text-gray-600 dark:text-gray-400 text-lg mb-10 leading-relaxed">
+              Whether you need a powerful marketing campaign or a robust software solution, we're here to make it happen. Let's start the conversation.
             </p>
 
-            <div className="space-y-8">
-              <div className="flex items-start space-x-4">
-                <div className="p-3 bg-gray-100 dark:bg-white/5 rounded-lg text-primary">
+            <div className="space-y-6">
+              <motion.div 
+                className="flex items-start space-x-4 group"
+                whileHover={{ x: 5 }}
+                transition={{ duration: 0.2 }}
+              >
+                <div className="p-3 bg-gradient-to-br from-primary/10 to-pink-500/10 rounded-xl text-primary group-hover:scale-110 transition-transform">
                   <Mail className="w-6 h-6" />
                 </div>
                 <div>
-                  <h3 className="font-bold text-lg">Email Us</h3>
-                  <p className="text-gray-600 dark:text-gray-400">
+                  <h3 className="font-bold text-lg mb-1">Email Us</h3>
+                  <a href="mailto:uthrix.solutions@gmail.com" className="text-gray-600 dark:text-gray-400 hover:text-primary transition-colors">
                     uthrix.solutions@gmail.com
-                  </p>
+                  </a>
                 </div>
-              </div>
+              </motion.div>
 
-              <div className="flex items-start space-x-4">
-                <div className="p-3 bg-gray-100 dark:bg-white/5 rounded-lg text-primary">
+              <motion.div 
+                className="flex items-start space-x-4 group"
+                whileHover={{ x: 5 }}
+                transition={{ duration: 0.2 }}
+              >
+                <div className="p-3 bg-gradient-to-br from-blue-500/10 to-cyan-500/10 rounded-xl text-primary group-hover:scale-110 transition-transform">
                   <Phone className="w-6 h-6" />
                 </div>
                 <div>
-                  <h3 className="font-bold text-lg">Call Us</h3>
-                  <p className="text-gray-600 dark:text-gray-400">
+                  <h3 className="font-bold text-lg mb-1">Call Us</h3>
+                  <a href="tel:+94773263997" className="text-gray-600 dark:text-gray-400 hover:text-primary transition-colors">
                     +94 773 263 997
-                  </p>
+                  </a>
                 </div>
-              </div>
+              </motion.div>
 
-              <div className="flex items-start space-x-4">
-                <div className="p-3 bg-gray-100 dark:bg-white/5 rounded-lg text-primary">
+              <motion.div 
+                className="flex items-start space-x-4 group"
+                whileHover={{ x: 5 }}
+                transition={{ duration: 0.2 }}
+              >
+                <div className="p-3 bg-gradient-to-br from-green-500/10 to-emerald-500/10 rounded-xl text-primary group-hover:scale-110 transition-transform">
                   <MapPin className="w-6 h-6" />
                 </div>
-                {/* <div>
-                  <h3 className="font-bold text-lg">Visit Us</h3>
+                <div>
+                  <h3 className="font-bold text-lg mb-1">Location</h3>
                   <p className="text-gray-600 dark:text-gray-400">
-                    123 Tech Avenue, Silicon Valley
-                    <br />
-                    California, USA
+                    Sri Lanka
                   </p>
-                </div> */}
-              </div>
+                </div>
+              </motion.div>
             </div>
 
             {/* Animated Map Placeholder */}

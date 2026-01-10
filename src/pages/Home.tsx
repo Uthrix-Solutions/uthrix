@@ -9,21 +9,25 @@ import { Contact } from '../components/Contact';
 import { Footer } from '../components/Footer';
 import { FloatingThemeToggle } from '../components/FloatingThemeToggle';
 import { ScrollToTopButton } from '../components/ScrollToTopButton';
+import { AnimatedBackground } from '../components/AnimatedBackground';
 
 export function Home() {
-  return <div className="min-h-screen bg-[var(--bg-primary)] text-[var(--text-primary)] transition-colors duration-300">
-      <Navigation />
-      <FloatingThemeToggle />
-      <ScrollToTopButton />
-      <main>
-        <Hero />
-        <Services />
-        <Portfolio />
-        <Clients />
-        <Testimonials />
-        <About />
-        <Contact />
-      </main>
-      <Footer />
+  return <div className="min-h-screen bg-[var(--bg-primary)] text-[var(--text-primary)] transition-colors duration-300 relative">
+      <AnimatedBackground />
+      <div className="relative z-10">
+        <Navigation />
+        <FloatingThemeToggle />
+        <ScrollToTopButton />
+        <main>
+          <Hero />
+          <Services />
+          <Portfolio />
+          <Clients />
+          <Testimonials />
+          <About />
+          <Contact />
+        </main>
+        <Footer />
+      </div>
     </div>;
 }

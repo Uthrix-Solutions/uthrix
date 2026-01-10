@@ -195,18 +195,18 @@ export function Hero() {
                     }}
                   />
                   <span className="whitespace-nowrap overflow-hidden text-ellipsis">
-                    Announcing our next round of funding.
+                    Digital Marketing × Software Development
                   </span>
                   <a
-                    href="#"
+                    href="#services"
                     className="font-semibold text-primary group/link inline-flex items-center whitespace-nowrap flex-shrink-0"
                   >
                     <span
                       className="absolute inset-0"
                       aria-hidden="true"
                     ></span>
-                    <span className="hidden xs:inline">Read more</span>
-                    <span className="inline xs:hidden">Read</span>
+                    <span className="hidden xs:inline">Explore</span>
+                    <span className="inline xs:hidden">More</span>
                     <motion.span
                       className="inline-block ml-0.5 sm:ml-1"
                       animate={{
@@ -225,14 +225,34 @@ export function Hero() {
                 </span>
               </motion.div>
             </motion.div>
+            
+            {/* Animated Subtitle */}
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ delay: 0.4, duration: 0.6 }}
+              className="mb-4"
+            >
+              <span className="text-sm md:text-base font-semibold tracking-wider uppercase text-primary">
+                Transform • Innovate • Dominate
+              </span>
+            </motion.div>
+            
             <h1 className="text-5xl md:text-6xl lg:text-7xl font-bold leading-tight mb-6">
-              Crafting Future <br />
-              <span className="text-primary">Software Today</span>
+              Digital Excellence <br />
+              <span className="relative inline-block">
+                <span className="text-primary">Engineered</span>
+                <motion.span
+                  className="absolute -bottom-2 left-0 w-full h-1 bg-primary"
+                  initial={{ width: 0 }}
+                  animate={{ width: "100%" }}
+                  transition={{ delay: 1, duration: 0.8 }}
+                />
+              </span>{" "}for Growth
             </h1>
 
             <p className="text-lg md:text-xl text-gray-600 dark:text-gray-400 mb-8 max-w-lg leading-relaxed">
-              Empowering businesses with tailored technology solutions for
-              seamless growth. We turn complex ideas into elegant reality.
+              We blend cutting-edge software development with data-driven digital marketing to accelerate your business growth and market dominance.
             </p>
 
             <nav
@@ -242,22 +262,28 @@ export function Hero() {
               <a
                 href="#contact"
                 onClick={handleContactClick}
-                className="inline-flex items-center justify-center px-8 py-4 rounded-full bg-primary text-white font-semibold hover:bg-primary-dark transition-all hover:scale-105 shadow-lg shadow-primary/25 group focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2"
+                className="group relative inline-flex items-center justify-center px-8 py-4 rounded-full bg-primary text-white font-semibold overflow-hidden transition-all hover:scale-105 shadow-lg shadow-primary/25 focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2"
                 aria-label="Contact us"
               >
-                Let's Connect
-                <ArrowRight
-                  className="ml-2 w-5 h-5 group-hover:translate-x-1 transition-transform"
-                  aria-hidden="true"
-                />
+                <span className="absolute inset-0 bg-gradient-to-r from-primary via-primary-dark to-primary bg-[length:200%_100%] group-hover:bg-[position:100%_0] transition-all duration-500" />
+                <span className="relative flex items-center">
+                  Start Your Project
+                  <ArrowRight
+                    className="ml-2 w-5 h-5 group-hover:translate-x-1 transition-transform"
+                    aria-hidden="true"
+                  />
+                </span>
               </a>
               <a
                 href="#portfolio"
                 onClick={handlePortfolioClick}
-                className="inline-flex items-center justify-center px-8 py-4 rounded-full border-2 border-gray-200 dark:border-gray-800 font-semibold hover:border-primary hover:text-primary transition-all hover:scale-105 focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2"
+                className="group relative inline-flex items-center justify-center px-8 py-4 rounded-full border-2 border-gray-200 dark:border-white/10 font-semibold transition-all hover:scale-105 focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2 overflow-hidden"
                 aria-label="View our portfolio"
               >
-                View Portfolio
+                <span className="absolute inset-0 bg-primary/5 scale-x-0 group-hover:scale-x-100 transition-transform origin-left duration-300" />
+                <span className="relative group-hover:text-primary transition-colors">
+                  View Case Studies
+                </span>
               </a>
             </nav>
           </motion.div>

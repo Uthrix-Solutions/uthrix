@@ -153,44 +153,67 @@ export function Services() {
   const currentCategory = serviceCategories.find(cat => cat.id === activeCategory);
 
   return (
-    <section id="services" className="py-20 lg:py-8 bg-gray-50 dark:bg-[#0a0a0a] relative overflow-hidden">
-      {/* Decorative Background Elements */}
-      <div className="absolute top-0 right-0 w-1/3 h-full bg-gradient-to-l from-gray-100/50 to-transparent dark:from-gray-800/20 pointer-events-none" />
-      <div className="absolute bottom-0 left-0 w-1/4 h-1/2 bg-gradient-to-tr from-primary/5 to-transparent pointer-events-none" />
+    <section id="services" className="py-20 lg:py-24 bg-gray-50 dark:bg-[#0a0a0a] relative overflow-hidden">
+      {/* Advanced Background Effects */}
+      <div className="absolute inset-0 overflow-hidden pointer-events-none">
+        <div className="absolute top-1/4 right-0 w-96 h-96 bg-primary/5 rounded-full blur-[100px]" />
+        <div className="absolute bottom-1/4 left-0 w-96 h-96 bg-blue-500/5 rounded-full blur-[100px]" />
+        <div className="absolute top-0 left-1/2 w-full h-px bg-gradient-to-r from-transparent via-primary/20 to-transparent" />
+      </div>
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         {/* Header */}
-        <div className="text-center max-w-3xl mx-auto mb-12">
+        <div className="text-center max-w-4xl mx-auto mb-16">
           <motion.span 
             initial={{ opacity: 0, y: 10 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
-            className="text-primary font-semibold tracking-wider uppercase text-sm"
+            className="inline-block px-4 py-2 rounded-full bg-primary/10 text-primary font-semibold tracking-wider uppercase text-sm mb-4"
           >
-            What We Do
+            Our Expertise
           </motion.span>
           <motion.h2 
             initial={{ opacity: 0, y: 10 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ delay: 0.1 }}
-            className="mt-2 text-3xl md:text-4xl font-bold"
+            className="mt-4 text-4xl md:text-5xl lg:text-6xl font-bold"
           >
-            With UTHRIX, You Perform Better.
-            <br />
-            <span className="text-gray-500 dark:text-gray-400">
-              Always! It is our guarantee.
+            Dual-Force{" "}
+            <span className="text-primary relative">
+              Solutions
+              <svg className="absolute -bottom-2 left-0 w-full" height="8" viewBox="0 0 100 8" preserveAspectRatio="none">
+                <motion.path
+                  d="M0,4 Q25,0 50,4 T100,4"
+                  fill="none"
+                  stroke="currentColor"
+                  strokeWidth="2"
+                  initial={{ pathLength: 0 }}
+                  whileInView={{ pathLength: 1 }}
+                  viewport={{ once: true }}
+                  transition={{ delay: 0.5, duration: 1 }}
+                />
+              </svg>
             </span>
           </motion.h2>
+          <motion.p
+            initial={{ opacity: 0, y: 10 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ delay: 0.2 }}
+            className="mt-6 text-lg md:text-xl text-gray-600 dark:text-gray-400"
+          >
+            Where digital marketing strategy meets powerful software engineering
+          </motion.p>
         </div>
 
-        {/* Category Tabs */}
+        {/* Category Tabs - Redesigned */}
         <motion.div 
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ delay: 0.2 }}
-          className="flex justify-center mb-12"
+          className="flex justify-center mb-16"
         >
           <div className="inline-flex bg-white/60 dark:bg-white/5 backdrop-blur-lg rounded-2xl p-2 shadow-lg border border-gray-200/50 dark:border-white/10">
             {serviceCategories.map((category) => (
