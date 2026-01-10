@@ -1,15 +1,15 @@
 import { useEffect, useState } from 'react';
-import { Menu, X } from 'lucide-react';
-import { motion, AnimatePresence } from 'framer-motion';
+import { Menu, Send, X } from 'lucide-react';
+import { AnimatePresence, motion, useScroll, useSpring, useTransform } from 'framer-motion';
 import { useNavigate, useLocation } from 'react-router-dom';
 import logo from "../assets/logo7.png";
 
 const navLinks = [
   { name: 'Home', path: 'home' },
   { name: 'Services', path: 'services' },
-  { name: 'Portfolio', path: 'portfolio' },
+  { name: 'Projects', path: 'portfolio' },
   { name: 'About', path: 'about' },
-  { name: 'Careers', path: '/', isRoute: true },
+  { name: 'Contact', path: 'contact' },
 ];
 
 export function Navigation() {
@@ -19,25 +19,31 @@ export function Navigation() {
   const navigate = useNavigate();
   const location = useLocation();
 
+  // Hide navbar on careers page
+  if (location.pathname === '/careers') {
+    return null;
+  }
+
+  const { scrollY } = useScroll();
+
+  const smoothProgress = useSpring(
+    useTransform(scrollY, [0, 180], [0, 1]),
+    { stiffness: 140, damping: 22, mass: 0.9 }
+  );
+
+  const navWidth = useTransform(smoothProgress, [0, 1], ['min(96vw, 1200px)', 'min(84vw, 980px)']);
+  const navHeight = useTransform(smoothProgress, [0, 1], [72, 56]);
+  const paddingX = useTransform(smoothProgress, [0, 1], [28, 18]);
+  const paddingY = useTransform(smoothProgress, [0, 1], [14, 10]);
+  const topOffset = useTransform(smoothProgress, [0, 1], [32, 16]);
+  const logoScale = useTransform(smoothProgress, [0, 1], [1, 0.9]);
+
   const toggleMenu = () => setIsMenuOpen(!isMenuOpen);
 
-  // Handle scroll event for sticky navbar with debounce effect
   useEffect(() => {
-    let timeoutId: NodeJS.Timeout;
-    
-    const handleScroll = () => {
-      clearTimeout(timeoutId);
-      timeoutId = setTimeout(() => {
-        setIsSticky(window.scrollY > 100);
-      }, 50);
-    };
-
-    window.addEventListener('scroll', handleScroll);
-    return () => {
-      window.removeEventListener('scroll', handleScroll);
-      clearTimeout(timeoutId);
-    };
-  }, []);
+    const unsubscribe = scrollY.on('change', (value) => setIsSticky(value > 12));
+    return () => unsubscribe();
+  }, [scrollY]);
 
   // Scroll to section handler
   const scrollToSection = (path: string, isRoute?: boolean) => {
@@ -57,7 +63,7 @@ export function Navigation() {
       setTimeout(() => {
         const element = document.getElementById(path);
         if (element) {
-          const navbarHeight = 100;
+          const navbarHeight = isSticky ? 72 : 96;
           const elementPosition = element.getBoundingClientRect().top + window.pageYOffset - navbarHeight;
           
           window.scrollTo({
@@ -69,7 +75,7 @@ export function Navigation() {
     } else {
       const element = document.getElementById(path);
       if (element) {
-        const navbarHeight = 100;
+        const navbarHeight = isSticky ? 72 : 96;
         const elementPosition = element.getBoundingClientRect().top + window.pageYOffset - navbarHeight;
         
         window.scrollTo({
@@ -83,7 +89,8 @@ export function Navigation() {
   // Track active section on scroll
   useEffect(() => {
     const handleScrollSpy = () => {
-      const sections = navLinks.map(link => document.getElementById(link.path));
+      const sectionLinks = navLinks.filter(link => !link.isRoute);
+      const sections = sectionLinks.map(link => document.getElementById(link.path));
       const scrollPosition = window.scrollY + 150;
 
       sections.forEach((section, index) => {
@@ -92,7 +99,7 @@ export function Navigation() {
           const sectionHeight = section.offsetHeight;
           
           if (scrollPosition >= sectionTop && scrollPosition < sectionTop + sectionHeight) {
-            setActiveSection(navLinks[index].path);
+            setActiveSection(sectionLinks[index].path);
           }
         }
       });
@@ -103,21 +110,38 @@ export function Navigation() {
   }, []);
 
   return (
-    <header
-      className={`fixed top-16 right-4 md:left-1/2 transform md:-translate-x-1/2 w-fit rounded-full px-5 py-2 transition-all duration-500 ease-[cubic-bezier(0.22,1,0.36,1)] z-50 md:top-4 border backdrop-blur-md ${
+    <motion.header
+      layout
+      initial={false}
+      style={{
+        width: navWidth,
+        height: navHeight,
+        paddingLeft: paddingX,
+        paddingRight: paddingX,
+        paddingTop: paddingY,
+        paddingBottom: paddingY,
+        top: topOffset,
+      }}
+      className={`fixed left-1/2 -translate-x-1/2 z-50 rounded-full border backdrop-blur-2xl transition-colors duration-500 ease-[cubic-bezier(0.22,1,0.36,1)] shadow-[0_18px_50px_-28px_rgba(0,0,0,0.55)] ${
         isSticky
-          ? 'bg-white/10 dark:bg-black/10 shadow-lg border-white/20 dark:border-gray-700/20'
-          : 'bg-white dark:bg-black shadow-md border-transparent'
+          ? 'bg-white/20 dark:bg-black/60 border-white/10 dark:border-white/10'
+          : 'bg-white/30 dark:bg-white/10 border-white/20 dark:border-white/10'
       }`}
     >
-      <nav className="flex items-center gap-6">
-        {/* Logo */}
-        <a 
-          href="/" 
-          className="text-2xl font-bold"
+      <div className="absolute inset-0 rounded-full bg-gradient-to-r from-primary/20 via-transparent to-primary/20 opacity-60 blur-2xl pointer-events-none" />
+      <nav className="relative flex items-center justify-between gap-4 w-full text-sm font-semibold text-gray-800 dark:text-gray-100">
+        <a
+          href="/"
+          className="flex items-center gap-3"
           onClick={() => setIsMenuOpen(false)}
         >
-          <img src={logo} alt="logo" className="w-8 h-8 cursor-pointer transition-transform duration-200 ease-out hover:scale-150 hover:-rotate-[1.5deg] hover:drop-shadow-md motion-reduce:transition-none motion-reduce:hover:transform-none" />
+          <motion.img
+            src={logo}
+            alt="logo"
+            style={{ scale: logoScale }}
+            className="w-9 h-9 cursor-pointer transition-transform duration-300 ease-out hover:scale-110 hover:-rotate-[2deg] hover:drop-shadow-[0_8px_24px_rgba(0,0,0,0.2)]"
+          />
+          <span className="hidden lg:inline text-base tracking-wide">Uthrix</span>
         </a>
         {/* Mobile menu button */}
         <button
@@ -129,7 +153,7 @@ export function Navigation() {
         </button>
 
         {/* Desktop Navigation Links */}
-        <ul className="hidden md:flex items-center gap-6">
+        <ul className="hidden md:flex items-center gap-5 lg:gap-7">
           {navLinks.map(({ name, path, isRoute }) => (
             <li key={path} className="cursor-pointer">
               <a
@@ -138,12 +162,21 @@ export function Navigation() {
                   e.preventDefault();
                   scrollToSection(path, isRoute);
                 }}
-                className={`block py-2 font-medium text-sm hover:text-primary transition-colors relative group whitespace-nowrap ${
-                  (isRoute && location.pathname === path) || activeSection === path ? 'text-primary' : ''
+                className={`relative px-3 py-2 rounded-full transition-all duration-300 ease-out group whitespace-nowrap ${
+                  (isRoute && location.pathname === path) || activeSection === path
+                    ? 'text-primary'
+                    : 'text-gray-700 dark:text-gray-200 hover:text-primary'
                 }`}
               >
-                {name}
-                <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-primary transition-all duration-300 group-hover:w-full" />
+                <span
+                  className={`absolute inset-0 rounded-full bg-white/50 dark:bg-white/10 transition-opacity duration-300 ease-out blur-[1px] ${
+                    (isRoute && location.pathname === path) || activeSection === path
+                      ? 'opacity-100'
+                      : 'opacity-0 group-hover:opacity-60'
+                  }`}
+                  aria-hidden
+                />
+                <span className="relative z-10">{name}</span>
               </a>
             </li>
           ))}
@@ -156,8 +189,10 @@ export function Navigation() {
                 e.preventDefault();
                 scrollToSection('contact');
               }}
-              className="bg-primary text-white px-4 py-2 rounded-full font-medium hover:bg-primary/80 transition-colors whitespace-nowrap"
+              className="group relative inline-flex items-center gap-2 overflow-hidden rounded-full bg-gradient-to-r from-primary to-primary-light text-white px-5 py-2 shadow-lg shadow-primary/30 transition-all duration-300 ease-out hover:shadow-primary/50 hover:-translate-y-0.5"
             >
+              <span className="absolute inset-0 bg-white/20 opacity-0 transition-opacity duration-300 group-hover:opacity-100" aria-hidden />
+              <Send className="w-4 h-4" />
               Talk to Us
             </a>
           </li>
@@ -209,6 +244,6 @@ export function Navigation() {
           </motion.div>
         )}
       </AnimatePresence>
-    </header>
+    </motion.header>
   );
 }
