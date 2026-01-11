@@ -183,7 +183,7 @@ export function Navigation() {
           {/* Desktop Contact Button */}
           <li>
             <a
-              href="https://wa.me/94773263997"
+              href="https://wa.me/94786733516"
               target="_blank"
               rel="noopener noreferrer"
               className="group relative inline-flex items-center gap-2 overflow-hidden rounded-full bg-gradient-to-r from-primary to-primary-light text-white px-5 py-2 shadow-lg shadow-primary/30 transition-all duration-300 ease-out hover:shadow-primary/50 hover:-translate-y-0.5"
