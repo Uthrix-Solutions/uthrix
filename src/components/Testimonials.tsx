@@ -46,36 +46,6 @@ const testimonials: Testimonial[] = [
     quote: "The branding and design work Uthrix created for us was phenomenal. They captured our vision perfectly and delivered a brand identity that resonates with our customers. Our sales increased by 85% post-launch!",
     rating: 5,
     projectType: "Branding & Design"
-  },
-  {
-    id: 4,
-    name: "David Park",
-    position: "CTO",
-    company: "DataStream Analytics",
-    image: "https://i.pravatar.cc/150?img=12",
-    quote: "Uthrix built our cloud infrastructure with precision and expertise. Their DevOps solutions have reduced our deployment time by 60% and improved system reliability significantly. Highly recommend their services.",
-    rating: 5,
-    projectType: "Cloud Solutions"
-  },
-  {
-    id: 5,
-    name: "Lisa Anderson",
-    position: "VP of Operations",
-    company: "RetailPro Inc.",
-    image: "https://i.pravatar.cc/150?img=9",
-    quote: "The mobile app Uthrix developed for our business has revolutionized how we connect with customers. The user experience is seamless, and the backend integration is flawless. Our customer satisfaction scores have never been higher.",
-    rating: 5,
-    projectType: "Mobile Development"
-  },
-  {
-    id: 6,
-    name: "James Wilson",
-    position: "Marketing Manager",
-    company: "FinanceHub",
-    image: "https://i.pravatar.cc/150?img=14",
-    quote: "Uthrix's SEO expertise brought our website from page 5 to page 1 for our key search terms. The increase in organic traffic has been phenomenal, and our lead generation has tripled. Exceptional results!",
-    rating: 5,
-    projectType: "SEO & Digital Marketing"
   }
 ];
 
@@ -369,10 +339,10 @@ export function Testimonials() {
           className="grid grid-cols-2 md:grid-cols-4 gap-6 mt-20 pt-20 border-t border-gray-200 dark:border-gray-800"
         >
           {[
-            { number: "500+", label: "Happy Clients" },
-            { number: "98%", label: "Satisfaction Rate" },
-            { number: "1000+", label: "Projects Delivered" },
-            { number: "50+", label: "Industry Awards" }
+            { number: "3+", label: "Happy Clients" },
+            { number: "100%", label: "Satisfaction Rate" },
+            { number: "10+", label: "Projects Delivered" },
+            { number: "1+", label: "Industry Awards" }
           ].map((stat, index) => (
             <motion.div
               key={index}
