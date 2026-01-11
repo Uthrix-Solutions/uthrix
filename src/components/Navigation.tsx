@@ -183,11 +183,9 @@ export function Navigation() {
           {/* Desktop Contact Button */}
           <li>
             <a
-              href="#contact"
-              onClick={(e) => {
-                e.preventDefault();
-                scrollToSection('contact');
-              }}
+              href="https://wa.me/94773263997"
+              target="_blank"
+              rel="noopener noreferrer"
               className="group relative inline-flex items-center gap-2 overflow-hidden rounded-full bg-gradient-to-r from-primary to-primary-light text-white px-5 py-2 shadow-lg shadow-primary/30 transition-all duration-300 ease-out hover:shadow-primary/50 hover:-translate-y-0.5"
             >
               <span className="absolute inset-0 bg-white/20 opacity-0 transition-opacity duration-300 group-hover:opacity-100" aria-hidden />
@@ -229,11 +227,10 @@ export function Navigation() {
               {/* Mobile Contact Button */}
               <li className="mt-3">
                 <a
-                  href="#contact"
-                  onClick={(e) => {
-                    e.preventDefault();
-                    scrollToSection('contact');
-                  }}
+                  href="https://wa.me/94762423423"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  onClick={() => setIsMenuOpen(false)}
                   className="bg-primary text-white w-full h-10 flex items-center justify-center rounded-md font-medium hover:bg-primary/80 transition-colors"
                 >
                   Contact Us
