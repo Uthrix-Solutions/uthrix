@@ -1,15 +1,16 @@
 import { useState, useEffect } from 'react';
 export function useTheme() {
-  const [theme, setTheme] = useState<'light' | 'dark'>('light');
+  const [theme, setTheme] = useState<'light' | 'dark'>('dark');
+
   useEffect(() => {
-    // Check local storage or system preference
+    // Prefer previously chosen theme; otherwise default to dark
     const savedTheme = localStorage.getItem('theme');
-    const systemPrefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
-    if (savedTheme === 'dark' || !savedTheme && systemPrefersDark) {
-      setTheme('dark');
+    const initialTheme = savedTheme === 'light' || savedTheme === 'dark' ? savedTheme : 'dark';
+
+    setTheme(initialTheme);
+    if (initialTheme === 'dark') {
       document.documentElement.classList.add('dark');
     } else {
-      setTheme('light');
       document.documentElement.classList.remove('dark');
     }
   }, []);
