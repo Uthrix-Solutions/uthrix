@@ -24,13 +24,13 @@ export function Footer() {
               Digital marketing strategies powered by cutting-edge software engineering. Your growth is our mission.
             </p>
             <div className="flex space-x-4">
-              <a href="https://www.linkedin.com/company/uthrix/?originalSubdomain=lk" className="p-2 bg-white/5 rounded-full hover:bg-primary transition-colors">
+              <a href="https://www.linkedin.com/company/uthrix/?originalSubdomain=lk" target="_blank" rel="noopener noreferrer" className="p-2 bg-white/5 rounded-full hover:bg-primary transition-colors">
                 <Linkedin className="w-5 h-5" />
               </a>             
-              <a href="https://www.facebook.com/people/UthriX/61581276571721/#" className="p-2 bg-white/5 rounded-full hover:bg-primary transition-colors">
+              <a href="https://www.facebook.com/people/UthriX/61581276571721/#" target="_blank" rel="noopener noreferrer" className="p-2 bg-white/5 rounded-full hover:bg-primary transition-colors">
                 <Facebook className="w-5 h-5" />
               </a>
-              <a href="https://www.instagram.com/uthrix.sl?igsh=eTIxZW15YmRzZzJ3&utm_source=qr" className="p-2 bg-white/5 rounded-full hover:bg-primary transition-colors">
+              <a href="https://www.instagram.com/uthrix.sl?igsh=eTIxZW15YmRzZzJ3&utm_source=qr" target="_blank" rel="noopener noreferrer" className="p-2 bg-white/5 rounded-full hover:bg-primary transition-colors">
                 <Instagram className="w-5 h-5" />
               </a>
             </div>
