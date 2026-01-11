@@ -215,7 +215,7 @@ const item = {
 };
 
 export function Portfolio() {
-  const [activeCategory, setActiveCategory] = useState<string>('development');
+  const [activeCategory, setActiveCategory] = useState<string>('marketing');
   const [activeSubcategory, setActiveSubcategory] = useState<string>('software');
 
   const currentCategory = portfolioData.find(cat => cat.id === activeCategory);
