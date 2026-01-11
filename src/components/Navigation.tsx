@@ -141,7 +141,6 @@ export function Navigation() {
             style={{ scale: logoScale }}
             className="w-9 h-9 cursor-pointer transition-transform duration-300 ease-out hover:scale-110 hover:-rotate-[2deg] hover:drop-shadow-[0_8px_24px_rgba(0,0,0,0.2)]"
           />
-          <span className="hidden lg:inline text-base tracking-wide">Uthrix</span>
         </a>
         {/* Mobile menu button */}
         <button
