@@ -13,9 +13,10 @@ import {
   ArrowRight,
   Award,
   Rocket,
-  Target
+  Target,
+  ArrowLeft
 } from 'lucide-react';
-import { Navigation } from '../components/Navigation';
+import { useNavigate } from 'react-router-dom';
 import { Footer } from '../components/Footer';
 import { FloatingThemeToggle } from '../components/FloatingThemeToggle';
 import { ScrollToTopButton } from '../components/ScrollToTopButton';
@@ -194,9 +195,21 @@ const cultureValues = [
 ];
 
 export function Careers() {
+  const navigate = useNavigate();
+
   return (
     <div className="min-h-screen bg-[var(--bg-primary)] text-[var(--text-primary)] transition-colors duration-300">
-      <Navigation />
+      {/* Back Button */}
+      <motion.button
+        onClick={() => navigate('/')}
+        initial={{ opacity: 0, x: -20 }}
+        animate={{ opacity: 1, x: 0 }}
+        transition={{ duration: 0.3 }}
+        className="fixed top-6 left-6 z-50 flex items-center gap-2 px-4 py-2 bg-white/20 dark:bg-black/40 backdrop-blur-xl rounded-full border border-white/20 dark:border-white/10 text-gray-800 dark:text-gray-100 font-semibold shadow-lg hover:bg-white/30 dark:hover:bg-black/50 transition-all duration-300 hover:-translate-x-1 group"
+      >
+        <ArrowLeft className="w-5 h-5 group-hover:-translate-x-1 transition-transform duration-300" />
+        <span>Back</span>
+      </motion.button>
       <FloatingThemeToggle />
       <ScrollToTopButton />
       
