@@ -5,11 +5,11 @@ import { useNavigate, useLocation } from 'react-router-dom';
 import logo from "../assets/logo7.png";
 
 const navLinks = [
-  { name: 'Home', path: 'home' },
-  { name: 'Services', path: 'services' },
-  { name: 'Projects', path: 'portfolio' },
-  { name: 'About', path: 'about' },
-  { name: 'Contact', path: 'contact' },
+  { name: 'Home', path: 'home', isRoute: false },
+  { name: 'Services', path: 'services', isRoute: false },
+  { name: 'Projects', path: 'portfolio', isRoute: false },
+  { name: 'About', path: 'about', isRoute: false },
+  { name: 'Contact', path: 'contact', isRoute: false },
 ];
 
 export function Navigation() {
