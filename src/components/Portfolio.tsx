@@ -3,8 +3,6 @@ import { motion, AnimatePresence } from 'framer-motion';
 import { 
   ExternalLink, 
   TrendingUp, 
-  Users, 
-  Clock,
   CheckCircle2,
   Code2,
   Smartphone,
@@ -38,6 +36,68 @@ interface PortfolioCategory {
 }
 
 const portfolioData: PortfolioCategory[] = [
+  {
+    id: 'marketing',
+    name: 'Marketing',
+    projects: [
+      {
+        title: 'B2B SaaS Lead Generation Campaign',
+        client: 'CloudTech Solutions',
+        category: 'marketing',
+        image: 'https://images.unsplash.com/photo-1460925895917-afdab827c52f?auto=format&fit=crop&q=80&w=800',
+        problem: 'SaaS startup struggled to generate qualified leads with limited budget and brand awareness in competitive market.',
+        solution: 'Implemented multi-channel strategy combining SEO, LinkedIn ads, content marketing, and marketing automation with lead scoring.',
+        technologies: ['Google Ads', 'LinkedIn Ads', 'HubSpot', 'SEMrush', 'Google Analytics'],
+        results: [
+          { metric: 'Qualified Leads', value: '+385%' },
+          { metric: 'Cost per Lead', value: '-62%' },
+          { metric: 'Conversion Rate', value: '+147%' }
+        ]
+      },
+      {
+        title: 'E-Commerce Brand Awareness Campaign',
+        client: 'EcoHome Products',
+        category: 'marketing',
+        image: 'https://images.unsplash.com/photo-1556742049-0cfed4f6a45d?auto=format&fit=crop&q=80&w=800',
+        problem: 'New sustainable products brand needed to build awareness and drive sales in crowded eco-friendly market.',
+        solution: 'Created integrated campaign with influencer partnerships, Instagram/Facebook ads, email marketing, and content strategy.',
+        technologies: ['Meta Ads', 'Instagram', 'Mailchimp', 'Shopify', 'Canva'],
+        results: [
+          { metric: 'Brand Awareness', value: '+520%' },
+          { metric: 'Social Followers', value: '75K+' },
+          { metric: 'Revenue Growth', value: '+290%' }
+        ]
+      },
+      {
+        title: 'Local Service Business SEO',
+        client: 'Premier Dental Group',
+        category: 'marketing',
+        image: 'https://images.unsplash.com/photo-1588776814546-1ffcf47267a5?auto=format&fit=crop&q=80&w=800',
+        problem: 'Dental practice invisible in local search results, losing patients to competitors despite excellent service quality.',
+        solution: 'Comprehensive local SEO strategy with Google Business optimization, review management, local citations, and content marketing.',
+        technologies: ['Google Ads', 'Google My Business', 'WordPress', 'Yoast SEO', 'BrightLocal'],
+        results: [
+          { metric: 'Local Rankings', value: 'Top 3' },
+          { metric: 'New Patients', value: '+215%' },
+          { metric: 'Phone Calls', value: '+340%' }
+        ]
+      },
+      {
+        title: 'Product Launch Campaign',
+        client: 'TechGear Innovations',
+        category: 'marketing',
+        image: 'https://images.unsplash.com/photo-1519389950473-47ba0277781c?auto=format&fit=crop&q=80&w=800',
+        problem: 'Electronics company launching flagship product needed buzz and pre-orders before launch date.',
+        solution: 'Multi-phase campaign with teaser content, influencer unboxing, paid social ads, email sequences, and launch event.',
+        technologies: ['Meta Ads', 'Google Ads', 'YouTube', 'Mailchimp', 'Analytics'],
+        results: [
+          { metric: 'Pre-orders', value: '12,500' },
+          { metric: 'Social Reach', value: '2.5M' },
+          { metric: 'Launch Day Sales', value: '$1.8M' }
+        ]
+      }
+    ]
+  },
   {
     id: 'development',
     name: 'Development',
@@ -135,69 +195,8 @@ const portfolioData: PortfolioCategory[] = [
         ]
       }
     ]
-  },
-  {
-    id: 'marketing',
-    name: 'Marketing',
-    projects: [
-      {
-        title: 'B2B SaaS Lead Generation Campaign',
-        client: 'CloudTech Solutions',
-        category: 'marketing',
-        image: 'https://images.unsplash.com/photo-1460925895917-afdab827c52f?auto=format&fit=crop&q=80&w=800',
-        problem: 'SaaS startup struggled to generate qualified leads with limited budget and brand awareness in competitive market.',
-        solution: 'Implemented multi-channel strategy combining SEO, LinkedIn ads, content marketing, and marketing automation with lead scoring.',
-        technologies: ['Google Ads', 'LinkedIn Ads', 'HubSpot', 'SEMrush', 'Google Analytics'],
-        results: [
-          { metric: 'Qualified Leads', value: '+385%' },
-          { metric: 'Cost per Lead', value: '-62%' },
-          { metric: 'Conversion Rate', value: '+147%' }
-        ]
-      },
-      {
-        title: 'E-Commerce Brand Awareness Campaign',
-        client: 'EcoHome Products',
-        category: 'marketing',
-        image: 'https://images.unsplash.com/photo-1556742049-0cfed4f6a45d?auto=format&fit=crop&q=80&w=800',
-        problem: 'New sustainable products brand needed to build awareness and drive sales in crowded eco-friendly market.',
-        solution: 'Created integrated campaign with influencer partnerships, Instagram/Facebook ads, email marketing, and content strategy.',
-        technologies: ['Meta Ads', 'Instagram', 'Mailchimp', 'Shopify', 'Canva'],
-        results: [
-          { metric: 'Brand Awareness', value: '+520%' },
-          { metric: 'Social Followers', value: '75K+' },
-          { metric: 'Revenue Growth', value: '+290%' }
-        ]
-      },
-      {
-        title: 'Local Service Business SEO',
-        client: 'Premier Dental Group',
-        category: 'marketing',
-        image: 'https://images.unsplash.com/photo-1588776814546-1ffcf47267a5?auto=format&fit=crop&q=80&w=800',
-        problem: 'Dental practice invisible in local search results, losing patients to competitors despite excellent service quality.',
-        solution: 'Comprehensive local SEO strategy with Google Business optimization, review management, local citations, and content marketing.',
-        technologies: ['Google Ads', 'Google My Business', 'WordPress', 'Yoast SEO', 'BrightLocal'],
-        results: [
-          { metric: 'Local Rankings', value: 'Top 3' },
-          { metric: 'New Patients', value: '+215%' },
-          { metric: 'Phone Calls', value: '+340%' }
-        ]
-      },
-      {
-        title: 'Product Launch Campaign',
-        client: 'TechGear Innovations',
-        category: 'marketing',
-        image: 'https://images.unsplash.com/photo-1519389950473-47ba0277781c?auto=format&fit=crop&q=80&w=800',
-        problem: 'Electronics company launching flagship product needed buzz and pre-orders before launch date.',
-        solution: 'Multi-phase campaign with teaser content, influencer unboxing, paid social ads, email sequences, and launch event.',
-        technologies: ['Meta Ads', 'Google Ads', 'YouTube', 'Mailchimp', 'Analytics'],
-        results: [
-          { metric: 'Pre-orders', value: '12,500' },
-          { metric: 'Social Reach', value: '2.5M' },
-          { metric: 'Launch Day Sales', value: '$1.8M' }
-        ]
-      }
-    ]
   }
+  
 ];
 
 const container = {
