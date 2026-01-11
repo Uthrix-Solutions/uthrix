@@ -3,17 +3,17 @@ import { Award, TrendingUp, Code, Users, Rocket, Target } from 'lucide-react';
 
 const stats = [{
   label: 'Digital Campaigns',
-  value: '50+',
+  value: '10+',
   icon: Target,
   color: 'from-red-500 to-pink-500'
 }, {
   label: 'Years Combined Expertise',
-  value: '15+',
+  value: '3+',
   icon: Award,
   color: 'from-blue-500 to-cyan-500'
 }, {
   label: 'Software Products',
-  value: '30+',
+  value: '5+',
   icon: Code,
   color: 'from-purple-500 to-indigo-500'
 }, {
@@ -23,12 +23,12 @@ const stats = [{
   color: 'from-green-500 to-emerald-500'
 }, {
   label: 'Happy Clients',
-  value: '100+',
+  value: '3+',
   icon: Users,
   color: 'from-orange-500 to-yellow-500'
 }, {
   label: 'Markets Reached',
-  value: '12+',
+  value: '10+',
   icon: Rocket,
   color: 'from-red-500 to-rose-500'
 }];
@@ -145,10 +145,10 @@ export function About() {
               whileInView={{ scale: 1, rotate: 0 }}
               viewport={{ once: true }}
               transition={{ delay: 0.3, type: 'spring' }}
-              className="absolute -bottom-6 -left-6 bg-white dark:bg-[#141414] p-6 rounded-2xl shadow-2xl border border-gray-100 dark:border-white/10 max-w-xs"
+              className="absolute -bottom-6 -left-6 z-20 bg-white dark:bg-[#141414] p-6 rounded-2xl shadow-2xl border border-gray-100 dark:border-white/10 max-w-xs"
             >
               <div className="flex items-center space-x-4">
-                <div className="w-12 h-12 rounded-full bg-gradient-to-br from-primary to-pink-500 flex items-center justify-center text-white font-bold text-xl">
+                <div className="w-12 h-12 rounded-full bg-gradient-to-br from-primary to-red-500 flex items-center justify-center text-white font-bold text-xl">
                   <Rocket className="w-6 h-6" />
                 </div>
                 <div>
