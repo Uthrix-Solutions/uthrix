@@ -17,6 +17,8 @@ import {
   ArrowLeft
 } from 'lucide-react';
 import { useNavigate } from 'react-router-dom';
+import { useState } from 'react';
+import { ApplicationModal } from '../components/ApplicationModal';
 import { Footer } from '../components/Footer';
 import { FloatingThemeToggle } from '../components/FloatingThemeToggle';
 import { ScrollToTopButton } from '../components/ScrollToTopButton';
@@ -122,6 +124,13 @@ const cultureValues = [
 
 export function Careers() {
   const navigate = useNavigate();
+  const [selectedJob, setSelectedJob] = useState<string | null>(null);
+  const [isModalOpen, setIsModalOpen] = useState(false);
+
+  function handleApply(jobId: string) {
+    setSelectedJob(jobId);
+    setIsModalOpen(true);
+  }
 
   return (
     <div className="min-h-screen bg-[var(--bg-primary)] text-[var(--text-primary)] transition-colors duration-300">
@@ -311,6 +320,7 @@ export function Careers() {
                       </div>
                     </div>
                     <motion.button
+                      onClick={() => handleApply(job.id)}
                       whileHover={{ scale: 1.05 }}
                       whileTap={{ scale: 0.95 }}
                       className="px-6 py-3 bg-primary text-white rounded-lg font-semibold hover:bg-primary/90 transition-colors flex items-center gap-2 whitespace-nowrap"
@@ -378,6 +388,7 @@ export function Careers() {
               keep you in mind for future opportunities that match your skills.
             </p>
             <motion.button
+              onClick={() => handleApply('general-application')}
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}
               className="px-8 py-4 bg-white text-primary rounded-lg font-bold hover:bg-gray-100 transition-colors inline-flex items-center gap-2"
@@ -388,6 +399,13 @@ export function Careers() {
           </motion.div>
         </div>
       </section>
+
+      <ApplicationModal
+        isOpen={isModalOpen}
+        onClose={() => setIsModalOpen(false)}
+        jobTitle={(selectedJob && openPositions.find((j) => j.id === selectedJob)?.title) || 'General Application'}
+        jobId={selectedJob || 'general-application'}
+      />
 
       <Footer />
     </div>
