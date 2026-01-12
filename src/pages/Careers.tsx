@@ -40,7 +40,7 @@ const openPositions: Job[] = [
     department: 'Software Development',
     location: 'Remote / Hybrid',
     type: 'Full-time',
-    experience: '5+ years',
+    experience: '3+ years',
     description: 'We are looking for a talented Senior Full Stack Developer to join our engineering team and help build cutting-edge web applications.',
     responsibilities: [
       'Design and develop scalable web applications using modern frameworks',
@@ -50,80 +50,11 @@ const openPositions: Job[] = [
       'Participate in technical planning and architecture decisions'
     ],
     requirements: [
-      '5+ years of experience in full-stack development',
+      '3+ years of experience in full-stack development',
       'Strong proficiency in React, Node.js, and TypeScript',
       'Experience with cloud platforms (AWS, Azure, or GCP)',
       'Solid understanding of RESTful APIs and microservices',
       'Excellent problem-solving and communication skills'
-    ]
-  },
-  {
-    id: 'ui-ux-designer',
-    title: 'UI/UX Designer',
-    department: 'Design',
-    location: 'Remote',
-    type: 'Full-time',
-    experience: '3+ years',
-    description: 'Join our creative team to design beautiful, user-centered interfaces that delight our clients and their customers.',
-    responsibilities: [
-      'Create user-centered designs for web and mobile applications',
-      'Develop wireframes, prototypes, and high-fidelity mockups',
-      'Conduct user research and usability testing',
-      'Collaborate with developers to ensure design implementation',
-      'Maintain and evolve our design system'
-    ],
-    requirements: [
-      '3+ years of experience in UI/UX design',
-      'Proficiency in Figma, Adobe XD, or similar design tools',
-      'Strong portfolio demonstrating design thinking and execution',
-      'Understanding of responsive design and accessibility standards',
-      'Excellent communication and collaboration skills'
-    ]
-  },
-  {
-    id: 'digital-marketing-specialist',
-    title: 'Digital Marketing Specialist',
-    department: 'Marketing',
-    location: 'On-site',
-    type: 'Full-time',
-    experience: '2+ years',
-    description: 'We are seeking a creative Digital Marketing Specialist to develop and execute marketing campaigns that drive growth.',
-    responsibilities: [
-      'Plan and execute digital marketing campaigns across multiple channels',
-      'Manage social media presence and content strategy',
-      'Analyze campaign performance and optimize for ROI',
-      'Create engaging content for blogs, emails, and social media',
-      'Collaborate with design and sales teams'
-    ],
-    requirements: [
-      '2+ years of experience in digital marketing',
-      'Strong understanding of SEO, SEM, and social media marketing',
-      'Experience with analytics tools (Google Analytics, SEMrush)',
-      'Excellent written and verbal communication skills',
-      'Creative mindset with data-driven approach'
-    ]
-  },
-  {
-    id: 'mobile-app-developer',
-    title: 'Mobile App Developer',
-    department: 'Software Development',
-    location: 'Hybrid',
-    type: 'Full-time',
-    experience: '3+ years',
-    description: 'Build innovative mobile applications that deliver exceptional user experiences on iOS and Android platforms.',
-    responsibilities: [
-      'Develop and maintain mobile applications for iOS and Android',
-      'Implement responsive designs and ensure smooth performance',
-      'Integrate with backend services and third-party APIs',
-      'Write clean, maintainable code and comprehensive tests',
-      'Stay updated with latest mobile development trends'
-    ],
-    requirements: [
-      '3+ years of mobile app development experience',
-      'Proficiency in React Native, Flutter, or native development',
-      'Strong understanding of mobile UI/UX principles',
-      'Experience with app deployment and store guidelines',
-      'Portfolio of published mobile applications'
     ]
   }
 ];
@@ -133,11 +64,6 @@ const benefits = [
     icon: DollarSign,
     title: 'Competitive Salary',
     description: 'Industry-leading compensation packages with performance bonuses and equity options.'
-  },
-  {
-    icon: Heart,
-    title: 'Health & Wellness',
-    description: 'Comprehensive health insurance, mental wellness programs, and gym memberships.'
   },
   {
     icon: Coffee,
@@ -244,7 +170,7 @@ export function Careers() {
             <div className="flex flex-wrap justify-center gap-4 text-sm md:text-base">
               <div className="flex items-center gap-2 px-4 py-2 rounded-lg bg-[var(--bg-secondary)]">
                 <Users className="w-5 h-5 text-primary" />
-                <span>50+ Team Members</span>
+                <span>10+ Team Members</span>
               </div>
               <div className="flex items-center gap-2 px-4 py-2 rounded-lg bg-[var(--bg-secondary)]">
                 <MapPin className="w-5 h-5 text-primary" />
