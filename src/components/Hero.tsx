@@ -303,6 +303,14 @@ export function Hero() {
       >
         <ChevronDown className="w-8 h-8 text-gray-400" aria-hidden="true" />
       </motion.div>
+
+      {/* Watermark Background */}
+      <div className="pointer-events-none absolute left-0 right-0 bottom-0 h-[55vh] overflow-hidden" aria-hidden="true">
+        <div className="absolute inset-0 bg-gradient-to-t from-black/50 via-black/20 to-transparent dark:from-black/60 dark:via-black/30" />
+        <div
+          className="absolute inset-0 bg-[url('/logos/uthrix10.png')] bg-no-repeat bg-center bg-[length:90vw] translate-y-[10%] opacity-6 md:opacity-10 mix-blend-screen"
+        />
+      </div>
     </section>
   );
 }

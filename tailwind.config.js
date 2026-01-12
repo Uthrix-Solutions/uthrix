@@ -1,3 +1,5 @@
+import { title } from 'process';
+
 /** @type {import('tailwindcss').Config} */
 export default {
   content: [
@@ -27,6 +29,8 @@ export default {
       fontFamily: {
         sans: ['Poppins', 'sans-serif'],
         heading: ['Montserrat', 'sans-serif'],
+        title: ['Raleway', 'raleway'],
+        title2: ['Gotham', 'Gotham'],
       },
       animation: {
         'float': 'float 6s ease-in-out infinite',
