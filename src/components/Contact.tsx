@@ -54,7 +54,7 @@ export function Contact() {
                 <div>
                   <h3 className="font-bold text-lg mb-1">Email Us</h3>
                   <a href="mailto:uthrix.solutions@gmail.com" className="text-gray-600 dark:text-gray-400 hover:text-primary transition-colors">
-                    uthrix.solutions@gmail.com
+                    info@uthrix.com
                   </a>
                 </div>
               </motion.div>
