@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Quote, Star, Play, ChevronLeft, ChevronRight, ArrowUpRight, Pause } from 'lucide-react';
 
@@ -48,6 +48,117 @@ const testimonials: Testimonial[] = [
     projectType: "Branding & Design"
   }
 ];
+
+// Statistics data
+const stats = [
+  { value: 3, suffix: '+', label: 'Happy Clients', duration: 2000 },
+  { value: 100, suffix: '%', label: 'Satisfaction Rate', duration: 2500 },
+  { value: 10, suffix: '+', label: 'Projects Delivered', duration: 2000 },
+  { value: 1, suffix: '+', label: 'Industry Awards', duration: 1500 }
+];
+
+// Custom easing function
+const easeOutQuart = (t: number): number => {
+  return 1 - Math.pow(1 - t, 4);
+};
+
+// Counter component with intersection observer
+function AnimatedCounter({ value, suffix, label, duration }: { 
+  value: number; 
+  suffix: string; 
+  label: string; 
+  duration: number;
+}) {
+  const [count, setCount] = useState(0);
+  const [isVisible, setIsVisible] = useState(false);
+  const counterRef = useRef<HTMLDivElement>(null);
+  const hasAnimated = useRef(false);
+  const animationFrameRef = useRef<number>();
+
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting && !hasAnimated.current) {
+          setIsVisible(true);
+          hasAnimated.current = true;
+        }
+      },
+      { threshold: 0.2, rootMargin: '50px' }
+    );
+
+    if (counterRef.current) {
+      observer.observe(counterRef.current);
+    }
+
+    return () => {
+      if (counterRef.current) {
+        observer.unobserve(counterRef.current);
+      }
+      if (animationFrameRef.current) {
+        cancelAnimationFrame(animationFrameRef.current);
+      }
+    };
+  }, []);
+
+  useEffect(() => {
+    if (!isVisible) return;
+
+    let startTime: number | null = null;
+
+    const animate = (currentTime: number) => {
+      if (!startTime) startTime = currentTime;
+      const elapsed = currentTime - startTime;
+      const progress = Math.min(elapsed / duration, 1);
+      
+      const easedProgress = easeOutQuart(progress);
+      const currentValue = Math.floor(easedProgress * value);
+      
+      setCount(currentValue);
+
+      if (progress < 1) {
+        animationFrameRef.current = requestAnimationFrame(animate);
+      } else {
+        setCount(value);
+      }
+    };
+
+    animationFrameRef.current = requestAnimationFrame(animate);
+
+    return () => {
+      if (animationFrameRef.current) {
+        cancelAnimationFrame(animationFrameRef.current);
+      }
+    };
+  }, [isVisible, value, duration]);
+
+  return (
+    <div ref={counterRef}>
+      <motion.div
+        initial={{ opacity: 0, scale: 0.5 }}
+        animate={isVisible ? { opacity: 1, scale: 1 } : {}}
+        transition={{ 
+          duration: 0.6, 
+          type: "spring",
+          stiffness: 100,
+          damping: 15
+        }}
+        className="text-center group"
+      >
+        <div className="text-4xl md:text-5xl font-bold text-primary mb-2 group-hover:scale-110 transition-transform">
+          {count}{suffix}
+        </div>
+        <motion.div
+          initial={{ opacity: 0 }}
+          animate={isVisible ? { opacity: 1 } : {}}
+          transition={{ duration: 0.6, delay: 0.3 }}
+          className="text-sm text-[var(--text-secondary)] uppercase tracking-wider"
+        >
+          {label}
+        </motion.div>
+      </motion.div>
+    </div>
+  );
+}
 
 export function Testimonials() {
   const [currentIndex, setCurrentIndex] = useState(0);
@@ -338,27 +449,14 @@ export function Testimonials() {
           transition={{ duration: 0.6, delay: 0.2 }}
           className="grid grid-cols-2 md:grid-cols-4 gap-6 mt-20 pt-20 border-t border-gray-200 dark:border-gray-800"
         >
-          {[
-            { number: "3+", label: "Happy Clients" },
-            { number: "100%", label: "Satisfaction Rate" },
-            { number: "10+", label: "Projects Delivered" },
-            { number: "1+", label: "Industry Awards" }
-          ].map((stat, index) => (
-            <motion.div
+          {stats.map((stat, index) => (
+            <AnimatedCounter
               key={index}
-              initial={{ opacity: 0, scale: 0.8 }}
-              whileInView={{ opacity: 1, scale: 1 }}
-              viewport={{ once: true }}
-              transition={{ delay: index * 0.1 }}
-              className="text-center group"
-            >
-              <div className="text-4xl md:text-5xl font-bold text-primary mb-2 group-hover:scale-110 transition-transform">
-                {stat.number}
-              </div>
-              <div className="text-sm text-[var(--text-secondary)] uppercase tracking-wider">
-                {stat.label}
-              </div>
-            </motion.div>
+              value={stat.value}
+              suffix={stat.suffix}
+              label={stat.label}
+              duration={stat.duration}
+            />
           ))}
         </motion.div>
       </div>

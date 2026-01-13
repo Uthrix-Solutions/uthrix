@@ -20,6 +20,7 @@ import { useNavigate } from 'react-router-dom';
 import { Footer } from '../components/Footer';
 import { FloatingThemeToggle } from '../components/FloatingThemeToggle';
 import { ScrollToTopButton } from '../components/ScrollToTopButton';
+import { useEffect, useRef, useState } from 'react';
 
 interface Job {
   id: string;
@@ -120,6 +121,146 @@ const cultureValues = [
   }
 ];
 
+// Statistics data
+const stats = [
+  { value: 3, suffix: '+', label: 'HAPPY CLIENTS', duration: 2000 },
+  { value: 100, suffix: '%', label: 'SATISFACTION RATE', duration: 2500 },
+  { value: 10, suffix: '+', label: 'PROJECTS DELIVERED', duration: 2000 },
+  { value: 1, suffix: '+', label: 'INDUSTRY AWARDS', duration: 1500 }
+];
+
+// Custom easing function for smooth counter animation
+const easeOutQuart = (t: number): number => {
+  return 1 - Math.pow(1 - t, 4);
+};
+
+// Counter component with intersection observer
+function AnimatedCounter({ value, suffix, label, duration }: { 
+  value: number; 
+  suffix: string; 
+  label: string; 
+  duration: number;
+}) {
+  const [count, setCount] = useState(0);
+  const [isVisible, setIsVisible] = useState(false);
+  const counterRef = useRef<HTMLDivElement>(null);
+  const hasAnimated = useRef(false);
+  const animationFrameRef = useRef<number>();
+
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting && !hasAnimated.current) {
+          setIsVisible(true);
+          hasAnimated.current = true;
+        }
+      },
+      { threshold: 0.2, rootMargin: '50px' }
+    );
+
+    if (counterRef.current) {
+      observer.observe(counterRef.current);
+    }
+
+    return () => {
+      if (counterRef.current) {
+        observer.unobserve(counterRef.current);
+      }
+      if (animationFrameRef.current) {
+        cancelAnimationFrame(animationFrameRef.current);
+      }
+    };
+  }, []);
+
+  useEffect(() => {
+    if (!isVisible) return;
+
+    let startTime: number | null = null;
+
+    const animate = (currentTime: number) => {
+      if (!startTime) startTime = currentTime;
+      const elapsed = currentTime - startTime;
+      const progress = Math.min(elapsed / duration, 1);
+      
+      const easedProgress = easeOutQuart(progress);
+      const currentValue = Math.floor(easedProgress * value);
+      
+      setCount(currentValue);
+
+      if (progress < 1) {
+        animationFrameRef.current = requestAnimationFrame(animate);
+      } else {
+        setCount(value);
+      }
+    };
+
+    animationFrameRef.current = requestAnimationFrame(animate);
+
+    return () => {
+      if (animationFrameRef.current) {
+        cancelAnimationFrame(animationFrameRef.current);
+      }
+    };
+  }, [isVisible, value, duration]);
+
+  return (
+    <div ref={counterRef} className="relative group">
+      <motion.div
+        initial={{ opacity: 0, scale: 0.5, y: 30 }}
+        animate={isVisible ? { opacity: 1, scale: 1, y: 0 } : {}}
+        transition={{ 
+          duration: 0.8, 
+          type: "spring",
+          stiffness: 100,
+          damping: 15
+        }}
+        className="text-center relative"
+      >
+        {/* Glowing background effect */}
+        <div className="absolute inset-0 blur-3xl opacity-20 group-hover:opacity-30 transition-opacity duration-500">
+          <div className="w-full h-full bg-gradient-to-r from-red-500 to-red-700 rounded-full"></div>
+        </div>
+        
+        {/* Counter */}
+        <div className="relative mb-3">
+          <motion.span 
+            className="text-5xl md:text-6xl lg:text-7xl font-black bg-gradient-to-br from-red-500 via-red-600 to-red-700 bg-clip-text text-transparent drop-shadow-2xl"
+            animate={isVisible ? { 
+              textShadow: [
+                "0 0 20px rgba(239, 68, 68, 0)",
+                "0 0 20px rgba(239, 68, 68, 0.3)",
+                "0 0 20px rgba(239, 68, 68, 0)"
+              ]
+            } : {}}
+            transition={{ duration: 2, repeat: Infinity, repeatDelay: 1 }}
+          >
+            {count}{suffix}
+          </motion.span>
+        </div>
+        
+        {/* Label */}
+        <motion.div
+          initial={{ opacity: 0, y: 10 }}
+          animate={isVisible ? { opacity: 1, y: 0 } : {}}
+          transition={{ duration: 0.6, delay: 0.4 }}
+        >
+          <p className="text-xs md:text-sm font-bold tracking-[0.2em] text-gray-400 uppercase">
+            {label}
+          </p>
+        </motion.div>
+
+        {/* Decorative line */}
+        <motion.div
+          initial={{ scaleX: 0 }}
+          animate={isVisible ? { scaleX: 1 } : {}}
+          transition={{ duration: 0.8, delay: 0.6 }}
+          className="h-0.5 w-16 mx-auto mt-3 bg-gradient-to-r from-transparent via-red-500 to-transparent"
+        />
+      </motion.div>
+    </div>
+  );
+}
+
 export function Careers() {
   const navigate = useNavigate();
 
@@ -182,6 +323,36 @@ export function Careers() {
               </div>
             </div>
           </motion.div>
+        </div>
+      </section>
+
+      {/* Statistics Section */}
+      <section className="py-16 px-4 sm:px-6 lg:px-8">
+        <div className="max-w-7xl mx-auto">
+          <div className="grid grid-cols-2 lg:grid-cols-4 gap-8 md:gap-12 lg:gap-16">
+            {stats.map((stat, index) => (
+              <motion.div
+                key={index}
+                initial={{ opacity: 0, y: 50 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true, margin: "-100px" }}
+                transition={{ 
+                  duration: 0.6, 
+                  delay: index * 0.15,
+                  type: "spring",
+                  stiffness: 80,
+                  damping: 12
+                }}
+              >
+                <AnimatedCounter 
+                  value={stat.value}
+                  suffix={stat.suffix}
+                  label={stat.label}
+                  duration={stat.duration}
+                />
+              </motion.div>
+            ))}
+          </div>
         </div>
       </section>
 
