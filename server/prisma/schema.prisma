@@ -1,0 +1,27 @@
+// Prisma schema targeting Supabase Postgres
+// Set DATABASE_URL in server/.env to your Supabase connection string
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+model Application {
+  id          String   @id @default(uuid())
+  jobId       String
+  fullName    String
+  email       String
+  phone       String
+  coverLetter String?  @db.Text
+  portfolio   String?
+  resumeUrl   String
+  status      String   @default("received")
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+
+  @@index([email, jobId])
+}

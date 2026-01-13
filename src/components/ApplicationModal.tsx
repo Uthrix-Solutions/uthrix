@@ -1,7 +1,7 @@
 import { AnimatePresence, motion } from 'framer-motion';
 import { X, Upload, CheckCircle, AlertCircle } from 'lucide-react';
 import { useEffect, useMemo, useRef, useState } from 'react';
-import { submitApplication } from '../lib/application';
+import { getResumeUploadUrl, uploadResumeToSignedUrl, submitApplicationJson } from '../lib/application';
 
 interface ApplicationModalProps {
   isOpen: boolean;
@@ -62,14 +62,29 @@ export function ApplicationModal({ isOpen, onClose, jobTitle, jobId }: Applicati
     setIsSubmitting(true);
     setErrorText('');
     try {
-      const result = await submitApplication({
+      // 1) Request presigned upload URL
+      const presigned = await getResumeUploadUrl(resume.name, resume.type);
+      if (!presigned.ok || !presigned.uploadUrl || !presigned.fileUrl) {
+        setStatus('error');
+        setErrorText(presigned.message || 'Failed to prepare upload');
+        return;
+      }
+      // 2) Upload file directly to storage
+      const up = await uploadResumeToSignedUrl(presigned.uploadUrl, resume);
+      if (!up.ok) {
+        setStatus('error');
+        setErrorText(up.message || 'Failed to upload resume');
+        return;
+      }
+      // 3) Submit application JSON referencing the file URL
+      const result = await submitApplicationJson({
         jobId,
         fullName,
         email,
         phone,
         coverLetter,
         portfolio,
-        resume
+        resumeUrl: presigned.fileUrl,
       });
       if (result.ok) {
         setStatus('success');
