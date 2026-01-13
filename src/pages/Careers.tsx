@@ -204,7 +204,7 @@ function AnimatedCounter({ value, suffix, label, duration }: {
   }, [isVisible, value, duration]);
 
   return (
-    <div ref={counterRef} className="relative group">
+    <div ref={counterRef}>
       <motion.div
         initial={{ opacity: 0, scale: 0.5, y: 30 }}
         animate={isVisible ? { opacity: 1, scale: 1, y: 0 } : {}}
@@ -214,28 +214,13 @@ function AnimatedCounter({ value, suffix, label, duration }: {
           stiffness: 100,
           damping: 15
         }}
-        className="text-center relative"
+        className="text-center"
       >
-        {/* Glowing background effect */}
-        <div className="absolute inset-0 blur-3xl opacity-20 group-hover:opacity-30 transition-opacity duration-500">
-          <div className="w-full h-full bg-gradient-to-r from-red-500 to-red-700 rounded-full"></div>
-        </div>
-        
         {/* Counter */}
-        <div className="relative mb-3">
-          <motion.span 
-            className="text-5xl md:text-6xl lg:text-7xl font-black bg-gradient-to-br from-red-500 via-red-600 to-red-700 bg-clip-text text-transparent drop-shadow-2xl"
-            animate={isVisible ? { 
-              textShadow: [
-                "0 0 20px rgba(239, 68, 68, 0)",
-                "0 0 20px rgba(239, 68, 68, 0.3)",
-                "0 0 20px rgba(239, 68, 68, 0)"
-              ]
-            } : {}}
-            transition={{ duration: 2, repeat: Infinity, repeatDelay: 1 }}
-          >
+        <div className="mb-3">
+          <span className="text-5xl md:text-6xl lg:text-7xl font-black text-primary">
             {count}{suffix}
-          </motion.span>
+          </span>
         </div>
         
         {/* Label */}
@@ -244,18 +229,10 @@ function AnimatedCounter({ value, suffix, label, duration }: {
           animate={isVisible ? { opacity: 1, y: 0 } : {}}
           transition={{ duration: 0.6, delay: 0.4 }}
         >
-          <p className="text-xs md:text-sm font-bold tracking-[0.2em] text-gray-400 uppercase">
+          <p className="text-xs md:text-sm font-bold tracking-[0.2em] text-[var(--text-secondary)] uppercase">
             {label}
           </p>
         </motion.div>
-
-        {/* Decorative line */}
-        <motion.div
-          initial={{ scaleX: 0 }}
-          animate={isVisible ? { scaleX: 1 } : {}}
-          transition={{ duration: 0.8, delay: 0.6 }}
-          className="h-0.5 w-16 mx-auto mt-3 bg-gradient-to-r from-transparent via-red-500 to-transparent"
-        />
       </motion.div>
     </div>
   );
