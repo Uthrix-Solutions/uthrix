@@ -39,13 +39,13 @@ const WhatsAppButton: React.FC = () => {
 
   return (
     <div
-      className={`fixed bottom-0 left-0 right-0 z-50 px-4 pb-5 transition-all duration-500 ${
+      className={`fixed bottom-4 left-4 right-4 z-40 transition-all duration-500 ${
         isVisible ? 'translate-y-0 opacity-100' : 'translate-y-20 opacity-0'
       }`}
     >
       <button
         onClick={handleWhatsAppClick}
-        className={`w-full font-medium py-4 px-6 rounded-xl backdrop-blur-md border flex items-center justify-center gap-3 active:scale-95 transition-all duration-200 ${
+        className={`w-full max-w-xs mx-auto font-medium py-3.5 px-6 rounded-xl backdrop-blur-md border flex items-center justify-center gap-3 active:scale-95 transition-all duration-200 ${
           theme === 'dark'
             ? 'bg-white/10 border-white/20 text-white shadow-lg shadow-black/20'
             : 'bg-black/5 border-black/10 text-[#0a0a0a] shadow-lg shadow-black/5'
