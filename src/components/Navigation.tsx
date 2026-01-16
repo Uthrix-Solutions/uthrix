@@ -228,7 +228,7 @@ export function Navigation() {
               {/* Mobile Contact Button */}
               <li className="mt-3">
                 <a
-                  href="https://wa.me/94762423423"
+                  href="https://wa.me/94786733516"
                   target="_blank"
                   rel="noopener noreferrer"
                   onClick={() => setIsMenuOpen(false)}

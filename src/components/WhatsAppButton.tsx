@@ -7,7 +7,7 @@ const WhatsAppButton: React.FC = () => {
   const { theme } = useTheme();
 
   // Your WhatsApp number (include country code without + or 00)
-  const whatsappNumber = '94771234567'; // Replace with your actual number
+  const whatsappNumber = '94786733516'; // Replace with your actual number
   const message = 'Hello! I would like to discuss a project with you.';
 
   useEffect(() => {
